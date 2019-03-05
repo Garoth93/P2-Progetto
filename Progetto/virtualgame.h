@@ -1,6 +1,6 @@
 #ifndef VIRTUALGAME_H
 #define VIRTUALGAME_H
-
+#include "item.h"
 
 class virtualGame  : public item
 {

@@ -33,5 +33,23 @@ cardGame::cardGame(const cardGame & card): item(card), espansione(card.getEspans
 //calcola prezzo virtuale
 double cardGame::calcolaPrezzo() const
 {
-
+    if( primaEdizione )
+    {
+        if( starterDeck )
+            return getPrezzoBase() + 5 + 5;
+        if( numeroCarte > 10)
+            return getPrezzoBase() + 4;
+        else
+            return getPrezzoBase() + 3;
+    }
+    if( !primaEdizione )
+    {
+        if( starterDeck )
+            return getPrezzoBase() + 5;
+        if( numeroCarte > 10)
+            return getPrezzoBase() + 2;
+        else
+            return getPrezzoBase() + 1;
+    }
+    return getPrezzoBase();
 }

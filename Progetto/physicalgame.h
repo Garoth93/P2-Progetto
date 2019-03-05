@@ -1,6 +1,6 @@
 #ifndef PHYSICALGAME_H
 #define PHYSICALGAME_H
-
+#include "item.h"
 
 class physicalGame : public item
 {

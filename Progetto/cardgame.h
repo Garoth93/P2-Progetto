@@ -1,6 +1,6 @@
 #ifndef CARDGAME_H
 #define CARDGAME_H
-
+#include "item.h"
 
 class cardGame : public item
 {
