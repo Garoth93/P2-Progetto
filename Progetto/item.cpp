@@ -23,3 +23,8 @@ double item::getPrezzoBase () const
 {
     return prezzoBase;
 }
+
+//operator <<
+std::ostream& operator<<(std::ostream& os, const item& ite){
+    return os<< "Titolo: " << ite.getTitolo() << "\nProdotto da: " << ite.getCasaProdruttrice();
+}

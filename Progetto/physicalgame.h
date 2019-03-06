@@ -15,4 +15,6 @@ class physicalGame : public item
         string getEdizione () const;//get
 };
 
+std::ostream& operator<<(std::ostream&, const physicalGame&);
+
 #endif // PHYSICALGAME_H

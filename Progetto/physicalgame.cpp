@@ -33,3 +33,7 @@ double physicalGame::calcolaPrezzo()const
         return getPrezzoBase() + 15;
     return getPrezzoBase();
 }
+
+std::ostream& operator<<(std::ostream& os, const physicalGame& phy) {
+    return operator<<(os, static_cast<const item&>(phy)) << "\nConsole: " << phy.getQualeConsole() << "\nEdizione: "<< phy.getEdizione() << "\nPrezzo: " << phy.calcolaPrezzo();
+}

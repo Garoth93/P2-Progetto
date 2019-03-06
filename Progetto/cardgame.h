@@ -19,4 +19,6 @@ class cardGame : public item
         double calcolaPrezzo () const;
 };
 
+std::ostream& operator<<(std::ostream& , const cardGame& );
+
 #endif // CARDGAME_H

@@ -10,9 +10,11 @@ class virtualGame  : public item
     public:
         virtualGame (string, string, double, string, bool);//costruttore
         string getPiattaForma () const;
-        bool gerSeasonPass () const;
+        bool getSeasonPass () const;
         virtualGame (const virtualGame &);//costrtuttore di copia
         double calcolaPrezzo () const;
 };
+
+std::ostream& operator<<(std::ostream& , const virtualGame& );
 
 #endif // VIRTUALGAME_H

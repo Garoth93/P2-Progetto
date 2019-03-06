@@ -21,4 +21,6 @@ class item
         double getPrezzoBase () const;
 };
 
+std::ostream& operator<<(std::ostream& , const item& );
+
 #endif // ITEM_H

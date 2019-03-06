@@ -53,3 +53,7 @@ double cardGame::calcolaPrezzo() const
     }
     return getPrezzoBase();
 }
+
+std::ostream& operator<<(std::ostream& os, const cardGame& phy) {
+    return operator<<(os, static_cast<const item&>(phy)) << "\nEspansione: " << phy.getEspansione() << "\nPrima edizione: "<< (phy.getPrimaEdizione()? "Si":"No") << "\nNumero di carte presenti: " << phy.getNumeroCarte() << "\nStarter Deck: "<< (phy.getStarterDeck()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();
+}

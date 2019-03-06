@@ -10,7 +10,7 @@ string virtualGame::getPiattaForma () const
 }
 
 //getSeasonpass
-bool virtualGame::gerSeasonPass () const
+bool virtualGame::getSeasonPass () const
 {
     return seasonPass;
 }
@@ -46,4 +46,8 @@ double virtualGame::calcolaPrezzo() const
         return getPrezzoBase() + 20;
     }
     return getPrezzoBase();
+}
+
+std::ostream& operator<<(std::ostream& os, const virtualGame& phy) {
+    return operator<<(os, static_cast<const item&>(phy)) << "\nPiattaforma: " << phy.getPiattaForma() << "\nSeason pass: "<< (phy.getSeasonPass()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();
 }
