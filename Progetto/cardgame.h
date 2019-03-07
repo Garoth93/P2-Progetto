@@ -12,13 +12,15 @@ class cardGame : public item
     public:
         cardGame (string, string, double, string, bool, int, bool);//costrtuttore
         cardGame (const cardGame &);//costrtuttore di copia
-        string getEspansione () const;
-        bool getPrimaEdizione () const;
-        int getNumeroCarte () const;
-        bool getStarterDeck () const;
-        double calcolaPrezzo () const;
+        string getEspansione () const;//getespansione
+        bool getPrimaEdizione () const;//getprimaed
+        int getNumeroCarte () const;//getnumerocarte
+        bool getStarterDeck () const;//getstarter
+        double calcolaPrezzo () const;//metodo virtuale
+
+        bool operator==(const item&) const;//operator==
 };
 
-std::ostream& operator<<(std::ostream& , const cardGame& );
+std::ostream& operator<<(std::ostream& , const cardGame& );//operator << esterno
 
 #endif // CARDGAME_H

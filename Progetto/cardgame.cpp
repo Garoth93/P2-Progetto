@@ -1,7 +1,7 @@
 #include "cardgame.h"
 
 //costrtuttore
-cardGame::cardGame(string tit, string casa, double prezzo, string espa="inserisci espansione", bool edi=0, int numc=11, bool deck=0): item(tit,casa,prezzo), espansione(espa),  primaEdizione(edi), numeroCarte(numc) ,starterDeck(deck) {}
+cardGame::cardGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string espa="inserisci espansione", bool edi=0, int numc=11, bool deck=0): item(tit,casa,prezzo), espansione(espa),  primaEdizione(edi), numeroCarte(numc) ,starterDeck(deck) {}
 
 //getEspansione
 string cardGame::getEspansione() const
@@ -52,6 +52,17 @@ double cardGame::calcolaPrezzo() const
             return getPrezzoBase() + 1;
     }
     return getPrezzoBase();
+}
+
+//operator==
+bool cardGame::operator==(const item& i) const
+{
+    const cardGame *ca = dynamic_cast<const cardGame*>(&i);
+    return ca && item::operator==(i) &&
+           ( getEspansione() == ca->getEspansione() || getEspansione()=="" ) &&
+           ( getPrimaEdizione() == ca->getPrimaEdizione() || getPrimaEdizione() ) &&
+           ( getNumeroCarte() == ca->getNumeroCarte() || getNumeroCarte()==0 ) &&
+           ( getStarterDeck() == ca->getStarterDeck() || getStarterDeck() );
 }
 
 std::ostream& operator<<(std::ostream& os, const cardGame& phy) {

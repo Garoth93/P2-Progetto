@@ -1,16 +1,16 @@
 #include "virtualgame.h"
 
 //costrtuttore
-virtualGame::virtualGame(string tit, string casa, double prezzo, string piatt="inserisci una piattaforma", bool pass=0): item(tit,casa,prezzo), piattaForma(piatt), seasonPass(pass) {}
+virtualGame::virtualGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string piatt="inserisci una piattaforma", bool pass=0): item(tit,casa,prezzo), piattaForma(piatt), seasonPass(pass) {}
 
 //getPiattaforma
-string virtualGame::getPiattaForma () const
+string virtualGame::getPiattaForma() const
 {
     return piattaForma;
 }
 
 //getSeasonpass
-bool virtualGame::getSeasonPass () const
+bool virtualGame::getSeasonPass() const
 {
     return seasonPass;
 }
@@ -48,6 +48,17 @@ double virtualGame::calcolaPrezzo() const
     return getPrezzoBase();
 }
 
-std::ostream& operator<<(std::ostream& os, const virtualGame& phy) {
+//operator==
+bool virtualGame::operator==(const item& i) const
+{
+    const virtualGame *vi = dynamic_cast<const virtualGame*>(&i);
+    return vi && item::operator==(i) &&
+           ( getPiattaForma() == vi->getPiattaForma() || getPiattaForma()=="" ) &&
+           ( getSeasonPass() == vi->getSeasonPass() || getSeasonPass() );
+}
+
+//operator <<
+std::ostream& operator<<(std::ostream& os, const virtualGame& phy)
+{
     return operator<<(os, static_cast<const item&>(phy)) << "\nPiattaforma: " << phy.getPiattaForma() << "\nSeason pass: "<< (phy.getSeasonPass()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();
 }
