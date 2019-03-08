@@ -24,6 +24,24 @@ double item::getPrezzoBase() const
     return prezzoBase;
 }
 
+//set titolo
+void item::setTitolo(string s)
+{
+    titolo=s;
+}
+
+//set casa produttrice
+void item::setCasaProduttrice(string s)
+{
+    casaProduttrice=s;
+}
+
+//set prezzo base
+void item::setPrezzoBase(double d)
+{
+    prezzoBase=d;
+}
+
 //operator ==
 bool item::operator==(const item& i) const
 {

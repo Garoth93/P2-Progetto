@@ -48,6 +48,18 @@ double virtualGame::calcolaPrezzo() const
     return getPrezzoBase();
 }
 
+//set piatta forma
+void virtualGame::setPiattaForma(string s)
+{
+    piattaForma=s;
+}
+
+//set season pass
+void virtualGame::setSeasonPass(bool b)
+{
+    seasonPass=b;
+}
+
 //operator==
 bool virtualGame::operator==(const item& i) const
 {

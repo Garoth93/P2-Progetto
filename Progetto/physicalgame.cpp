@@ -16,6 +16,7 @@ string physicalGame::getEdizione()const
 //costrtuttore di copia
 physicalGame::physicalGame(const physicalGame & phy): item(phy), qualeConsole(phy.getQualeConsole()), edizione(phy.getEdizione()) {}
 
+
 //calcola prezzo virtuale
 double physicalGame::calcolaPrezzo()const
 {

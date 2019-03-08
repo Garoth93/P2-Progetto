@@ -8,16 +8,25 @@ class virtualGame  : public item
         string piattaForma;
         bool seasonPass;
     public:
+        //costrtuttori
         virtualGame (string, string, double, string, bool);//costruttore
-        string getPiattaForma() const;//get piattaforma
-        bool getSeasonPass() const;//get season pass
         virtualGame (const virtualGame &);//costrtuttore di copia
+
+        //metodi di get
+        bool getSeasonPass() const;//get season pass
+        string getPiattaForma() const;//get piattaforma
+
+        //metodi di set
+        void setPiattaForma(string);
+        void setSeasonPass(bool);
+
         double calcolaPrezzo() const;//metodo virtuale calcola prezzo
 
+        //operator
         bool operator==(const item&) const;//operator==
 };
 
-//operator << esterno
-std::ostream& operator<<(std::ostream& , const virtualGame& );
+//operator
+std::ostream& operator<<(std::ostream& , const virtualGame& );//operator << esterno
 
 #endif // VIRTUALGAME_H
