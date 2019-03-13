@@ -17,7 +17,6 @@ class item
         item (const item &);//costruttore di copia
         virtual ~item() = default;//distruttore virtuale
 
-
         virtual double calcolaPrezzo() const = 0; //metodo virtuale per calcolare il prezzo
 
         //metodi di get

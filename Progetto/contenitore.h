@@ -47,6 +47,8 @@ class Contenitore
     //---FINE CONSTITERATOR
         Constiterator begin() const;
         Constiterator end() const;
+        //erase solo per non const iterator
+        //Constiterator erase(const Constiterator &);
 };
 
 //---NODO---
@@ -114,6 +116,21 @@ typename Contenitore<T>::Constiterator Contenitore<T>::end() const
         return Constiterator(NULL);
     return Constiterator(last + 1, true);
 }
+
+/*
+//erasae
+template<typename T>
+typename Contenitore<T>::Constiterator Contenitore<T>::erase(const Constiterator & cit)
+{
+    if( cit->pt->prev )
+        cit->pt->prev->next=cit->pt->next;
+    if( cit->pt->next )
+        cit->pt->next->prev=cit->pt->prev;
+    ++cit;
+    return cit;
+    //sistema consiterator
+}
+*/
 
 //---CONSTITERATOR---
 //costrtuttore constiterator
