@@ -18,8 +18,11 @@ class Contenitore
 
         };
         //---FINE NODO--
+
         nodo * first;//puntatore primo nodo
         nodo * last;//puntatore ultimo nodo
+
+    //PUBLIC CLASSE CONTENITORE
     public:
         void PushBegin(const T &);
         void PushEnd(const T &);
@@ -45,10 +48,38 @@ class Contenitore
             bool operator!=(const Constiterator &) const;
     };
     //---FINE CONSTITERATOR
-        Constiterator begin() const;
-        Constiterator end() const;
+
+    //---ITERATOR
+    class Iterator
+    {
+        friend class Contenitore<T>;
+        private:
+            nodo * pt;
+            bool pte;
+            Iterator(nodo *, bool=false);
+        public:
+            Iterator();
+            Iterator &operator++();
+            //do anche ++(int)
+            Iterator &operator--();
+            //do annche --(int)
+            const T &operator*() const;
+            const T *operator->() const;
+            bool operator==(const Iterator &) const;
+            bool operator!=(const Iterator &) const;
+    };
+    //---FINE ITITERATOR
+        //METODI PUBBLICI CONTENITORE
+        //METODI PER CONSTITERATOR
+        Constiterator cbegin() const;
+        Constiterator cend() const;
         //erase solo per non const iterator
-        //Constiterator erase(const Constiterator &);
+
+        //METODI PER ITERATOR
+        Iterator begin() const;
+        Iterator end() const;
+        Iterator erase(Iterator);
+        //erase return un iteratore rif costante
 };
 
 //---NODO---
@@ -101,36 +132,50 @@ void Contenitore<T>::PushEnd(const T & t)
     }
 }
 
-//begin
+//begin constiterator
 template<typename T>
-typename Contenitore<T>::Constiterator Contenitore<T>::begin() const
+typename Contenitore<T>::Constiterator Contenitore<T>::cbegin() const
 {
     return Constiterator(first);
 }
 
-//end
+//end constiterator
 template<typename T>
-typename Contenitore<T>::Constiterator Contenitore<T>::end() const
+typename Contenitore<T>::Constiterator Contenitore<T>::cend() const
 {
     if(first == NULL)
         return Constiterator(NULL);
     return Constiterator(last + 1, true);
 }
 
-/*
-//erasae
+//begin iterator
 template<typename T>
-typename Contenitore<T>::Constiterator Contenitore<T>::erase(const Constiterator & cit)
+typename Contenitore<T>::Iterator Contenitore<T>::begin() const
 {
-    if( cit->pt->prev )
-        cit->pt->prev->next=cit->pt->next;
-    if( cit->pt->next )
-        cit->pt->next->prev=cit->pt->prev;
-    ++cit;
-    return cit;
-    //sistema consiterator
+    return Iterator(first);
 }
-*/
+
+//end iterator
+template<typename T>
+typename Contenitore<T>::Iterator Contenitore<T>::end() const
+{
+    if(first == NULL)
+        return Iterator(NULL);
+    return Iterator(last + 1, true);
+}
+
+//sistemare erase
+//erasae Iterator
+template<typename T>
+typename Contenitore<T>::Iterator Contenitore<T>::erase(Iterator it)
+{
+    if( it.pt->prev )
+        it.pt->prev->next=it.pt->next;
+    if( it.pt->next )
+        it.pt->next->prev=it.pt->prev;
+    ++it;
+    return it;
+}
 
 //---CONSTITERATOR---
 //costrtuttore constiterator
@@ -198,6 +243,75 @@ bool Contenitore<T>::Constiterator::operator ==(const Constiterator & x) const
 //operator !=
 template< typename T>
 bool Contenitore<T>::Constiterator::operator !=(const Constiterator & x) const
+{
+    return pt != x.pt;
+}
+//ITERATOR
+//costrtuttore iterator
+template< typename T>
+Contenitore<T>::Iterator::Iterator(nodo * p, bool b) : pt(p), pte(b) {}
+
+//costrtuttore iterator
+template< typename T>
+Contenitore<T>::Iterator::Iterator() : pt(NULL), pte(false) {}
+
+//operatore ++
+template< typename T>
+typename Contenitore<T>::Iterator& Contenitore<T>::Iterator::operator ++()
+{
+    if (!pte && pt)
+    {
+        if (pt->next == NULL)
+        {
+            pt = pt + 1;
+            pte = true;
+        }
+        else
+            pt = pt->next;
+    }
+    return *this;
+}
+
+//operator --
+template< typename T>
+typename Contenitore<T>::Iterator& Contenitore<T>::Iterator::operator --()
+{
+    if (pte)
+    {
+        pt = pt - 1;
+        pte = false;
+    }
+    else if (pt)
+    {
+        pt = pt->prev;
+    }
+    return *this;
+}
+
+//operator *
+template< typename T>
+const T & Contenitore<T>::Iterator::operator *() const
+{
+    return pt->info;
+}
+
+//operator ->
+template< typename T>
+const T * Contenitore<T>::Iterator::operator ->() const
+{
+    return &(pt->info);
+}
+
+//operator ==
+template< typename T>
+bool Contenitore<T>::Iterator::operator ==(const Iterator & x) const
+{
+    return pt == x.pt;
+}
+
+//operator !=
+template< typename T>
+bool Contenitore<T>::Iterator::operator !=(const Iterator & x) const
 {
     return pt != x.pt;
 }
