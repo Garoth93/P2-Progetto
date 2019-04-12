@@ -164,19 +164,6 @@ typename Contenitore<T>::Iterator Contenitore<T>::end() const
     return Iterator(last + 1, true);
 }
 
-//sistemare erase
-//erasae Iterator
-template<typename T>
-typename Contenitore<T>::Iterator Contenitore<T>::erase(Iterator it)
-{
-    if( it.pt->prev )
-        it.pt->prev->next=it.pt->next;
-    if( it.pt->next )
-        it.pt->next->prev=it.pt->prev;
-    ++it;
-    return it;
-}
-
 //---CONSTITERATOR---
 //costrtuttore constiterator
 template< typename T>
@@ -314,5 +301,44 @@ template< typename T>
 bool Contenitore<T>::Iterator::operator !=(const Iterator & x) const
 {
     return pt != x.pt;
+}
+
+//CONTENITORE
+//erasae Iterator
+template<typename T>
+typename Contenitore<T>::Iterator Contenitore<T>::erase(Iterator it)
+{
+    //Cosa succede se la chiamo quando è pass the end???? return se stesso
+
+    Iterator rit;
+    if( (!(it.pt)->prev) && (!(it.pt)->next))//se è unico nodo presente nella lista
+    {
+        first=NULL;
+        last=NULL;
+        rit.pt=NULL;
+        rit.pte=true;
+        return rit;
+    }
+
+    if(!(it.pt)->next)//caso se è l'ultimo nodo presente nella lista
+    {
+        rit=(it.pt)->prev;
+    }
+
+    if( (it.pt)->prev )//caso se esiste il nodo precendente
+        ((it.pt)->prev)->next=(it.pt)->next;
+    else//se non esiste aggioranre primo nodo dentro al contenitore
+        first=(it.pt)->next;
+
+    if( (it.pt)->next )//caso se esiste il nodo sucessivo
+        ((it.pt)->next)->prev=(it.pt)->prev;
+    else//se non esiste aggiornare ultimo nodo presente dentro il contenitore
+    {
+        last=(rit.pt);
+        return rit;
+    }
+
+    ++it;//incremento iteratore
+    return it;
 }
 #endif // CONTENITORE_H
