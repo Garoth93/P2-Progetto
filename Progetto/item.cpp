@@ -45,9 +45,49 @@ void item::setPrezzoBase(double d)
 //operator ==
 bool item::operator==(const item& i) const
 {
-    return ( titolo==i.titolo || titolo=="" ) &&
-           ( casaProduttrice==i.casaProduttrice || casaProduttrice=="" ) &&
-           ( prezzoBase==i.prezzoBase || prezzoBase==0 );
+    return ( titolo==i.titolo || titolo=="" || i.titolo=="") &&
+           ( casaProduttrice==i.casaProduttrice || casaProduttrice=="" || i.casaProduttrice=="" ) &&
+           ( prezzoBase==i.prezzoBase || prezzoBase==0 || i.prezzoBase==0 );
+}
+
+//operator !=
+bool item::operator!=(const item& i) const
+{
+    bool ret = false;
+    if(titolo=="" || i.titolo=="")
+    {
+        ret = true;
+    }
+    if(!ret && titolo!=i.titolo )
+    {
+        return true;
+    }else{
+        ret = false;
+    }
+    if(casaProduttrice=="" || i.casaProduttrice=="")
+    {
+        ret = true;
+    }
+    if(!ret && casaProduttrice!=i.casaProduttrice )
+    {
+        return true;
+    }else{
+        ret = false;
+    }
+    if(prezzoBase==0 || i.prezzoBase==0)
+    {
+        ret = true;
+    }
+    if(!ret && prezzoBase!=i.prezzoBase )
+    {
+        return true;
+    }else{
+        return false;
+    }
+
+    /*return ( titolo!=i.titolo) ||
+           ( casaProduttrice!=i.casaProduttrice ) ||
+           ( prezzoBase!=i.prezzoBase);*/
 }
 
 //operator <<

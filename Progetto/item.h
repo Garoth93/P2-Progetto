@@ -18,6 +18,7 @@ class item
         virtual ~item() = default;//distruttore virtuale
 
         virtual double calcolaPrezzo() const = 0; //metodo virtuale per calcolare il prezzo
+        virtual string getTipo() const =0;//metodo virtuale per il sottotipo
 
         //metodi di get
         string getTitolo() const;//metodo get per il titolo
@@ -31,7 +32,7 @@ class item
 
         //operator
         virtual bool operator==(const item&) const;//operator==
-        //virtual bool operator!=(const item&) const;//operator!=
+        virtual bool operator!=(const item&) const;//operator!=
 };
 
 std::ostream& operator<<(std::ostream& , const item& );//operator << esterno alla classe

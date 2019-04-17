@@ -48,6 +48,12 @@ double virtualGame::calcolaPrezzo() const
     return getPrezzoBase();
 }
 
+//get tipo virtuale
+string virtualGame::getTipo() const
+{
+    return "virtualgame";
+}
+
 //set piatta forma
 void virtualGame::setPiattaForma(string s)
 {
@@ -65,9 +71,46 @@ bool virtualGame::operator==(const item& i) const
 {
     const virtualGame *vi = dynamic_cast<const virtualGame*>(&i);
     return vi && item::operator==(i) &&
-           ( getPiattaForma() == vi->getPiattaForma() || getPiattaForma()=="" ) &&
-           ( getSeasonPass() == vi->getSeasonPass() || getSeasonPass() );
+           ( getPiattaForma() == vi->getPiattaForma() || getPiattaForma()=="" || vi->getPiattaForma()=="" ) &&
+           ( getSeasonPass() == vi->getSeasonPass() || getSeasonPass() || vi->getSeasonPass() );
 }
+
+//operator!=
+bool virtualGame::operator!=(const item& i) const
+{
+    const virtualGame *vi = dynamic_cast<const virtualGame*>(&i);
+    if(!vi)
+        return true;
+    bool ret = false;
+    if( item::operator!=(i) )
+    {
+        return true;
+    }
+    if( getPiattaForma()=="" || vi->getPiattaForma()=="" )
+    {
+        ret = true;
+    }
+    if(!ret && getPiattaForma() != vi->getPiattaForma()  )
+    {
+        return true;
+    }else{
+        ret = false;
+    }
+    if( getSeasonPass() || vi->getSeasonPass() )
+    {
+        ret = true;
+    }
+    if(!ret && getSeasonPass() != vi->getSeasonPass()  )
+    {
+        return true;
+    }else{
+        return false;
+    }
+    /*return !vi && item::operator!=(i) ||
+           ( getPiattaForma() != vi->getPiattaForma() ) ||
+           ( getSeasonPass() != vi->getSeasonPass() );*/
+}
+
 
 //operator <<
 std::ostream& operator<<(std::ostream& os, const virtualGame& phy)

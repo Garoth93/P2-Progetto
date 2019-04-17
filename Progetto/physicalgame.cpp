@@ -35,14 +35,57 @@ double physicalGame::calcolaPrezzo()const
     return getPrezzoBase();
 }
 
+//get tipo virtuale
+string physicalGame::getTipo() const
+{
+    return "physicalgame";
+}
+
 //operator==
 bool physicalGame::operator==(const item& i) const
 {
     const physicalGame *ph = dynamic_cast<const physicalGame*>(&i);
     return ph && item::operator==(i) &&
-           ( getQualeConsole() == ph->getQualeConsole() || getQualeConsole()=="" ) &&
-           ( getEdizione() == ph->getEdizione() || getEdizione()=="" );
+           ( getQualeConsole() == ph->getQualeConsole() || getQualeConsole()=="" || ph->getQualeConsole()=="" ) &&
+           ( getEdizione() == ph->getEdizione() || getEdizione()=="" || ph->getEdizione()=="" );
 }
+
+//operator!=
+bool physicalGame::operator!=(const item& i) const
+{
+    const physicalGame *ph = dynamic_cast<const physicalGame*>(&i);
+    if(!ph)
+        return true;
+    bool ret = false;
+    if( item::operator!=(i) )
+    {
+        return true;
+    }
+    if( getQualeConsole()=="" || ph->getQualeConsole()=="" )
+    {
+        ret = true;
+    }
+    if(!ret && getQualeConsole()!=ph->getQualeConsole()  )
+    {
+        return true;
+    }else{
+        ret = false;
+    }
+    if( getEdizione()=="" || ph->getEdizione()=="" )
+    {
+        ret = true;
+    }
+    if(!ret && getEdizione()!=ph->getEdizione()  )
+    {
+        return true;
+    }else{
+        return false;
+    }
+    /*return !ph || item::operator!=(i) ||
+           ( getQualeConsole() != ph->getQualeConsole() ) ||
+           ( getEdizione() != ph->getEdizione() );*/
+}
+
 
 //operator <<
 std::ostream& operator<<(std::ostream& os, const physicalGame& phy)

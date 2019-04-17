@@ -11,10 +11,12 @@ class physicalGame : public item
         physicalGame (string, string, double, string, string);//costruttore
         physicalGame (const physicalGame &);//costruttore di copia
         double calcolaPrezzo () const;//metedo calcola prezzo virtuale
+        string getTipo() const;//metodo virtuale gettipo
         string getQualeConsole () const;//get console
         string getEdizione () const;//get edizione
 
         bool operator==(const item&) const;//operator==
+        bool operator!=(const item&) const;//operator!=
 };
 
 std::ostream& operator<<(std::ostream&, const physicalGame&);//operator << esterno alla classe

@@ -17,8 +17,10 @@ class cardGame : public item
         int getNumeroCarte () const;//getnumerocarte
         bool getStarterDeck () const;//getstarter
         double calcolaPrezzo () const;//metodo virtuale
+        string getTipo() const;//metodo virtuale
 
         bool operator==(const item&) const;//operator==
+        bool operator!=(const item&) const;//operator==
 };
 
 std::ostream& operator<<(std::ostream& , const cardGame& );//operator << esterno

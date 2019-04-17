@@ -19,6 +19,7 @@ class Contenitore
         };
         //---FINE NODO--
 
+        //CAMPI DATO CONTENITORE
         nodo * first;//puntatore primo nodo
         nodo * last;//puntatore ultimo nodo
 

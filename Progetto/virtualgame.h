@@ -21,9 +21,11 @@ class virtualGame  : public item
         void setSeasonPass(bool);
 
         double calcolaPrezzo() const;//metodo virtuale calcola prezzo
+        string getTipo() const;//metodo virtuale gettipo
 
         //operator
         bool operator==(const item&) const;//operator==
+        bool operator!=(const item&) const;//operator!=
 };
 
 //operator
