@@ -17,13 +17,21 @@ SOURCES += main.cpp\
     item.cpp \
     physicalgame.cpp \
     virtualgame.cpp \
-    cardgame.cpp
+    cardgame.cpp \
+    controller.cpp \
+    menu.cpp \
+    negozio.cpp \
+    cercapage.cpp
 
 HEADERS  += mainwindow.h \
     contenitore.h \
     item.h \
     physicalgame.h \
     virtualgame.h \
-    cardgame.h
+    cardgame.h \
+    controller.h \
+    menu.h \
+    negozio.h \
+    cercapage.h
 
 FORMS    += mainwindow.ui

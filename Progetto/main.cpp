@@ -1,19 +1,20 @@
 //#include "mainwindow.h"
-//#include <QApplication>
+#include <QApplication>
 
 #include "physicalgame.h"
 #include "virtualgame.h"
 #include "cardgame.h"
 #include "contenitore.h"
+#include "controller.h"
 
-/*int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    controller w(NULL);
     w.show();
 
     return a.exec();
-}*/
+}
 
 int main()
 {
