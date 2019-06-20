@@ -1,0 +1,17 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\item.o
+./release\physicalgame.o
+./release\virtualgame.o
+./release\cardgame.o
+./release\controller.o
+./release\menu.o
+./release\negozio.o
+./release\cercapage.o
+./release\moc_mainwindow.o
+./release\moc_controller.o
+./release\moc_menu.o
+./release\moc_negozio.o
+./release\moc_cercapage.o
+);

@@ -1,0 +1,17 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\item.o
+./debug\physicalgame.o
+./debug\virtualgame.o
+./debug\cardgame.o
+./debug\controller.o
+./debug\menu.o
+./debug\negozio.o
+./debug\cercapage.o
+./debug\moc_mainwindow.o
+./debug\moc_controller.o
+./debug\moc_menu.o
+./debug\moc_negozio.o
+./debug\moc_cercapage.o
+);
