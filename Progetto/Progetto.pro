@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     controller.cpp \
     menu.cpp \
     negozio.cpp \
-    cercapage.cpp
+    cercapage.cpp \
+    modello.cpp
 
 HEADERS  += mainwindow.h \
     contenitore.h \
@@ -32,6 +33,7 @@ HEADERS  += mainwindow.h \
     controller.h \
     menu.h \
     negozio.h \
-    cercapage.h
+    cercapage.h \
+    modello.h
 
 FORMS    += mainwindow.ui

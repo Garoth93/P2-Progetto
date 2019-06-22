@@ -4,6 +4,7 @@
 #include <menu.h>
 #include <negozio.h>
 #include <cercapage.h>
+#include <modello.h>
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -16,6 +17,9 @@ class controller : public QWidget
 {
     Q_OBJECT
 private:
+    modello * model;//prova per model sistemare
+    QString file;//prova per model sistemare
+
     QVBoxLayout *layoutPrincipale;
     menu * mymenu;
     negozio * negl;

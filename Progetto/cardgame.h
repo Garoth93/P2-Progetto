@@ -21,6 +21,9 @@ class cardGame : public item
 
         bool operator==(const item&) const;//operator==
         bool operator!=(const item&) const;//operator==
+
+        //metodo virtuale per prendere i dati
+        virtual string infoItem();//const?
 };
 
 std::ostream& operator<<(std::ostream& , const cardGame& );//operator << esterno

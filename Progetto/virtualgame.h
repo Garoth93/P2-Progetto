@@ -26,6 +26,9 @@ class virtualGame  : public item
         //operator
         bool operator==(const item&) const;//operator==
         bool operator!=(const item&) const;//operator!=
+
+        //metodo virtuale per prendere i dati
+        virtual string infoItem();//const?
 };
 
 //operator

@@ -17,6 +17,9 @@ class physicalGame : public item
 
         bool operator==(const item&) const;//operator==
         bool operator!=(const item&) const;//operator!=
+
+        //altri metodi
+        virtual string infoItem();//const?
 };
 
 std::ostream& operator<<(std::ostream&, const physicalGame&);//operator << esterno alla classe

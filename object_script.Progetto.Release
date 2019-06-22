@@ -9,6 +9,7 @@ INPUT(
 ./release\menu.o
 ./release\negozio.o
 ./release\cercapage.o
+./release\modello.o
 ./release\moc_mainwindow.o
 ./release\moc_controller.o
 ./release\moc_menu.o

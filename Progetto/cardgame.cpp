@@ -129,6 +129,16 @@ bool cardGame::operator!=(const item& i) const
            ( getStarterDeck() != ca->getStarterDeck() );*/
 }
 
+//metodo virtuale per prendere i dati
+std::string cardGame::infoItem() {
+    std::string og = item::infoItem();
+        return og.append("\n").append("Espansione: " + getEspansione())
+                .append("\nPrima edizione: ").append(getPrimaEdizione() ? "Si" : "No")
+                //.append("\nNumero carte: " + std::to_string(getNumeroCarte()))
+                .append("\nStarter deck: ").append(getStarterDeck() ? "Si" : "No");
+                //.append("\nPrezzo: " + std::to_string(calcolaPrezzo()));
+}
+
 //operator <<
 std::ostream& operator<<(std::ostream& os, const cardGame& phy) {
     return operator<<(os, static_cast<const item&>(phy)) << "\nEspansione: " << phy.getEspansione() << "\nPrima edizione: "<< (phy.getPrimaEdizione()? "Si":"No") << "\nNumero di carte presenti: " << phy.getNumeroCarte() << "\nStarter Deck: "<< (phy.getStarterDeck()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();

@@ -90,6 +90,14 @@ bool item::operator!=(const item& i) const
            ( prezzoBase!=i.prezzoBase);*/
 }
 
+//metodo per estrappolare i dati e metterli in stringa
+std::string item::infoItem() {
+    std::string str = "";
+    return str.append("\n").append("Tipologia prodotto: " + getTipo())
+            .append("\nTitolo: " + getTitolo())
+            .append("\nCasaProduttrice: " + getCasaProdruttrice());
+}
+
 //operator <<
 std::ostream& operator<<(std::ostream& os, const item& ite)
 {

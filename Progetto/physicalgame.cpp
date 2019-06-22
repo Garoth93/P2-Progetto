@@ -86,6 +86,14 @@ bool physicalGame::operator!=(const item& i) const
            ( getEdizione() != ph->getEdizione() );*/
 }
 
+//metodo virtuale per prendere i dati
+std::string physicalGame::infoItem() {
+    std::string og = item::infoItem();
+        return og.append("\n").append("Console: " + getQualeConsole())
+                .append("\Edizione: " + getEdizione());
+                //.append("\nPrezzo: " + std::to_string(calcolaPrezzo()));
+}
+
 
 //operator <<
 std::ostream& operator<<(std::ostream& os, const physicalGame& phy)

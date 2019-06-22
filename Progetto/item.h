@@ -33,6 +33,9 @@ class item
         //operator
         virtual bool operator==(const item&) const;//operator==
         virtual bool operator!=(const item&) const;//operator!=
+
+        //metodo per estrappolare i dati e metterli in stringa
+        virtual string infoItem();//const?
 };
 
 std::ostream& operator<<(std::ostream& , const item& );//operator << esterno alla classe

@@ -111,6 +111,14 @@ bool virtualGame::operator!=(const item& i) const
            ( getSeasonPass() != vi->getSeasonPass() );*/
 }
 
+//metodo virtuale per prendere i dati
+std::string virtualGame::infoItem() {
+    std::string og = item::infoItem();
+        return og.append("\n").append("Piattaforma: " + getPiattaForma())
+                .append("\nSeason Pass: ").append(getSeasonPass() ? "Si" : "No");
+                //.append("\nPrezzo: " + std::to_string(calcolaPrezzo()));
+}
+
 
 //operator <<
 std::ostream& operator<<(std::ostream& os, const virtualGame& phy)

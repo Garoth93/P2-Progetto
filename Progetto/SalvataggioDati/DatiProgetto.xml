@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--!!!Non modificate-->
+<root>
+    <VideogiocoFisico titolo="Fifa19" casaProduttrice="Eletronic Arts" prezzoBase="25" qualeConsole="PS4" edizione="standard"/>
+    <VideogiocoFisico titolo="Fifa18" casaProduttrice="Eletronic Arts" prezzoBase="15" qualeConsole="PS4" edizione="standard"/>
+</root>
+
