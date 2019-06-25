@@ -21,7 +21,8 @@ cercapage::cercapage(QWidget* parent):
     liconsolephy(new QLineEdit(this)),
     liedizionephy(new QLineEdit(this)),
     liespansione(new QLineEdit(this)),
-    linumerocarte(new QLineEdit(this))
+    linumerocarte(new QLineEdit(this)),
+    lista(new itemWidget(this))
 {
     QGridLayout * mainl = new QGridLayout;//layout principale come matrice
 
@@ -39,6 +40,7 @@ cercapage::cercapage(QWidget* parent):
     //radio button
     QVBoxLayout *vbox = new QVBoxLayout;//creo vbox per contenere i radio button
     rVideoV->setChecked(true);//imposto radio button predefinito
+    brVideov = true;//imposto il primo bool a true
     vbox->addWidget(rVideoV);
     vbox->addWidget(rVideoF);
     vbox->addWidget(rCarte);
@@ -57,7 +59,7 @@ cercapage::cercapage(QWidget* parent):
 
     //ricerca videogioco virtuale
     QGridLayout * lvirtualgame = new QGridLayout;//layout come matrice per virtual game
-    QLabel * lpiattaformav = new QLabel("Nome",this);//creazione label per piattaforma gioco virtuale
+    QLabel * lpiattaformav = new QLabel("Piattaforma",this);//creazione label per piattaforma gioco virtuale
     QLabel * lseasonpassv = new QLabel("Season pass",this);
     lvirtualgame->addWidget(lpiattaformav,0,0,1,1);
     lvirtualgame->addWidget(lipiattaformav,0,1,1,1);
@@ -83,7 +85,7 @@ cercapage::cercapage(QWidget* parent):
     QLabel * lespansione = new QLabel("Espansione",this);
     QLabel * lnumerocarte = new QLabel("Numero delle carte",this);
     QLabel * lprimaedc = new QLabel("Prima edizione",this);
-    QLabel * lstarterdeckc = new QLabel("Season pass",this);
+    QLabel * lstarterdeckc = new QLabel("Starter deck",this);
     lcardgame->addWidget(lespansione,0,0,1,1);
     lcardgame->addWidget(liespansione,0,1,1,1);
     lcardgame->addWidget(lnumerocarte,1,0,1,1);
@@ -96,8 +98,20 @@ cercapage::cercapage(QWidget* parent):
     wcardgame->setVisible(false);
     mainl->addWidget(wcardgame,3,0,1,1);
 
+    //segnale dopo aver premuto il tasto ricerca
+    connect(cercabutton,SIGNAL(clicked()),this,SLOT(pressTastoRicerca()));
+
+    //metto il loyout principale dentro a un widget
+    QWidget * mainw = new QWidget;
+    mainw->setLayout(mainl);
+
+    //creo il mio loyour orrizontale finale per insire i due widget finali
+    QHBoxLayout * mainwtot = new QHBoxLayout;
+    mainwtot->addWidget(mainw);
+    mainwtot->addWidget(lista);
+
     //aggiornamento layout principale
-    setLayout(mainl);
+    setLayout(mainwtot);
 }
 
 void cercapage::radiobuttonslot() {
@@ -107,15 +121,78 @@ void cercapage::radiobuttonslot() {
             wvirtualgame->setVisible(true);
             wphysicalgame->setVisible(false);
             wcardgame->setVisible(false);
+            brVideov = true;
+            brVideof = false;
+            brCarte = false;
         }
         if(name=="Videogioco fisico"){
             wvirtualgame->setVisible(false);
             wphysicalgame->setVisible(true);
             wcardgame->setVisible(false);
+            brVideov = false;
+            brVideof = true;
+            brCarte = false;
         }
         if(name=="Gioco di carte"){
             wvirtualgame->setVisible(false);
             wphysicalgame->setVisible(false);
             wcardgame->setVisible(true);
+            brVideov = false;
+            brVideof = false;
+            brCarte = true;
         }
+}
+
+itemBase* cercapage::creazioneOggRicerca(){
+    string nomeogg = (nomeDue->text()).toLocal8Bit().constData();
+    string casapogg = (casaProdDue->text()).toLocal8Bit().constData();
+    if(brVideov == true){//oggetto virtuale
+        /*ricorda usiamo conversione to local 8 per windows
+          possiamo usare sempre queste 2
+          std::string utf8_text = qs.toUtf8().constData();
+          std::string current_locale_text = qs.toLocal8Bit().constData();*/
+        string piattaogg = (lipiattaformav->text()).toLocal8Bit().constData();
+        bool seasonogg = false;
+        if (seasonpassv->isChecked())
+            seasonogg = true;
+        itemBase * oggetto = new virtualGame(nomeogg,casapogg,0,piattaogg,seasonogg);
+        return oggetto;
+    }
+    if(brVideof == true){//oggetto fisico
+        string consogg = (liconsolephy->text()).toLocal8Bit().constData();
+        string edizogg = (liedizionephy->text()).toLocal8Bit().constData();
+        itemBase * oggetto = new physicalGame(nomeogg,casapogg,0,consogg,edizogg);
+        return oggetto;
+    }
+    if(brCarte == true){//oggetto carte
+        string espaogg = (liespansione->text()).toLocal8Bit().constData();
+        string numcogg = (linumerocarte->text()).toLocal8Bit().constData();
+        double numcoggd = atof(numcogg.c_str());
+        bool primaogg = false; bool startogg = false;
+        if(primaedc->isChecked())
+            primaogg = true;
+        if(starterdeckc->isChecked())
+            startogg = true;
+        itemBase * oggetto = new cardGame(nomeogg,casapogg,0,espaogg,primaogg,numcoggd,startogg);
+        return oggetto;
+    }
+}
+
+//setta il bool per lo stato ricerca a true dopo aver premuto il tasto cerca
+void cercapage::pressTastoRicerca(){
+    statoRicerca = true;
+}
+
+//return booleano per lo stato della ricerca
+bool cercapage::infoStatoRicerca()const{
+    return statoRicerca;
+}
+
+//get bottne ricerca
+QPushButton* cercapage::getBottoneRicerca() const {
+    return cercabutton;
+}
+
+itemWidget* cercapage::getLista()const{
+    return lista;
 }

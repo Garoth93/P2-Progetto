@@ -26,6 +26,9 @@ controller::controller(QWidget *parent):
     connect(negl->getBottoneCarte(), SIGNAL(clicked()), this, SLOT(caricaDatiNegozio()));
     connect(negl->getBottoneTutte(), SIGNAL(clicked()), this, SLOT(caricaDatiNegozio()));
 
+    connect(cercapagina->getBottoneRicerca(), SIGNAL(clicked()), this, SLOT(avviaRicercaOgg()));
+
+
 
     setLayout(layoutPrincipale);
 
@@ -71,5 +74,18 @@ void controller::caricaDatiNegozio(){
             negl->setFalseBottoneTutte();//setto a false il booleano nel negozio
         }
     }
+}
+
+//funzione di ricerca oggetto
+void controller::avviaRicercaOgg() {
+    cercapagina->getLista()->clear();
+    itemBase * provvisorio = cercapagina->creazioneOggRicerca();//creo oggetto da ricercare per poi andare a cercarlo nella  mia lista
+    Contenitore<itemBase*>::Constiterator citini = model->mcbegin();
+    Contenitore<itemBase*>::Constiterator citfine = model->mcend();
+    for(; citini != citfine ; ++citini){
+        if( *provvisorio == *(*citini) )
+            cercapagina->getLista()->aggiungiItem(*citini);
+    }
+    delete provvisorio;
 }
 

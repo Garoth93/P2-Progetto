@@ -14,6 +14,11 @@
 #include <QGroupBox>
 #include <QCheckBox>
 
+#include "cardgame.h"
+#include "virtualgame.h"
+#include "physicalgame.h"
+#include "itemwidget.h"
+
 class cercapage: public QWidget
 {
     Q_OBJECT
@@ -23,6 +28,8 @@ private:
     QLabel * casaProdUno;
     QLineEdit * nomeDue;
     QLineEdit * casaProdDue;
+    //lista da visualizzare
+    itemWidget * lista;
     //bootone cerca
     QPushButton * cercabutton;//bottone cerca
     //widget per virtuale fisico e carte
@@ -46,11 +53,25 @@ private:
     //gioco di carte
     QLineEdit * liespansione;
     QLineEdit * linumerocarte;
+
+    //bool per radiobutton
+    bool brVideov = false;
+    bool brVideof = false;
+    bool brCarte = false;
+    bool statoRicerca = false;
 public slots://creo slot per signal
     void radiobuttonslot();
+    void pressTastoRicerca();
 public:
     //creo un metodo che guarda tutti i checkbox per con is cecked e nel mentre mi cambia le variabili
     cercapage(QWidget* parent);
+    //creo oggetto per la ricerca
+    itemBase * creazioneOggRicerca();
+    //info per lo stato e bottone ricerca
+    bool infoStatoRicerca() const;
+    QPushButton * getBottoneRicerca() const;
+    //per lista
+    itemWidget * getLista() const;
 };
 
 #endif // CERCAPAGE_H
