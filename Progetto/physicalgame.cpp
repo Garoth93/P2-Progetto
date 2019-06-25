@@ -1,7 +1,8 @@
 #include "physicalgame.h"
 
+
 //costruttore
-physicalGame::physicalGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string qualeCons="Inserisci per quale console è questa versione", string ediz="Inserisci edizione"): item(tit,casa,prezzo), qualeConsole(qualeCons), edizione(ediz){}
+physicalGame::physicalGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string qualeCons="Inserisci per quale console è questa versione", string ediz="Inserisci edizione"): itemBase(tit,casa,prezzo), qualeConsole(qualeCons), edizione(ediz){}
 
 //getQualeconsole
 string physicalGame::getQualeConsole()const
@@ -14,7 +15,7 @@ string physicalGame::getEdizione()const
     return edizione;
 }
 //costrtuttore di copia
-physicalGame::physicalGame(const physicalGame & phy): item(phy), qualeConsole(phy.getQualeConsole()), edizione(phy.getEdizione()) {}
+physicalGame::physicalGame(const physicalGame & phy): itemBase(phy), qualeConsole(phy.getQualeConsole()), edizione(phy.getEdizione()) {}
 
 
 //calcola prezzo virtuale
@@ -42,22 +43,22 @@ string physicalGame::getTipo() const
 }
 
 //operator==
-bool physicalGame::operator==(const item& i) const
+bool physicalGame::operator==(const itemBase& i) const
 {
     const physicalGame *ph = dynamic_cast<const physicalGame*>(&i);
-    return ph && item::operator==(i) &&
+    return ph && itemBase::operator==(i) &&
            ( getQualeConsole() == ph->getQualeConsole() || getQualeConsole()=="" || ph->getQualeConsole()=="" ) &&
            ( getEdizione() == ph->getEdizione() || getEdizione()=="" || ph->getEdizione()=="" );
 }
 
 //operator!=
-bool physicalGame::operator!=(const item& i) const
+bool physicalGame::operator!=(const itemBase& i) const
 {
     const physicalGame *ph = dynamic_cast<const physicalGame*>(&i);
     if(!ph)
         return true;
     bool ret = false;
-    if( item::operator!=(i) )
+    if( itemBase::operator!=(i) )
     {
         return true;
     }
@@ -88,15 +89,15 @@ bool physicalGame::operator!=(const item& i) const
 
 //metodo virtuale per prendere i dati
 std::string physicalGame::infoItem() {
-    std::string og = item::infoItem();
+    std::string og = itemBase::infoItem();
         return og.append("\n").append("Console: " + getQualeConsole())
-                .append("\Edizione: " + getEdizione());
-                //.append("\nPrezzo: " + std::to_string(calcolaPrezzo()));
+                .append("\nEdizione: " + getEdizione())
+                .append("\nPrezzo: " + (QString::number(calcolaPrezzo()).toUtf8()) );//uso libreria QT può dare problemi con i compilatori windows il to string
 }
 
 
 //operator <<
 std::ostream& operator<<(std::ostream& os, const physicalGame& phy)
 {
-    return operator<<(os, static_cast<const item&>(phy)) << "\nConsole: " << phy.getQualeConsole() << "\nEdizione: "<< phy.getEdizione() << "\nPrezzo: " << phy.calcolaPrezzo();
+    return operator<<(os, static_cast<const itemBase&>(phy)) << "\nConsole: " << phy.getQualeConsole() << "\nEdizione: "<< phy.getEdizione() << "\nPrezzo: " << phy.calcolaPrezzo();
 }

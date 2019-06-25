@@ -1,7 +1,7 @@
 #include "virtualgame.h"
 
 //costrtuttore
-virtualGame::virtualGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string piatt="inserisci una piattaforma", bool pass=0): item(tit,casa,prezzo), piattaForma(piatt), seasonPass(pass) {}
+virtualGame::virtualGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string piatt="inserisci una piattaforma", bool pass=0): itemBase(tit,casa,prezzo), piattaForma(piatt), seasonPass(pass) {}
 
 //getPiattaforma
 string virtualGame::getPiattaForma() const
@@ -16,7 +16,7 @@ bool virtualGame::getSeasonPass() const
 }
 
 //costrtuttore di copia
-virtualGame::virtualGame(const virtualGame & vir): item(vir), piattaForma(vir.getPiattaForma()), seasonPass(vir.seasonPass) {}
+virtualGame::virtualGame(const virtualGame & vir): itemBase(vir), piattaForma(vir.getPiattaForma()), seasonPass(vir.seasonPass) {}
 
 //calcola prezzo virtuale
 double virtualGame::calcolaPrezzo() const
@@ -67,22 +67,22 @@ void virtualGame::setSeasonPass(bool b)
 }
 
 //operator==
-bool virtualGame::operator==(const item& i) const
+bool virtualGame::operator==(const itemBase& i) const
 {
     const virtualGame *vi = dynamic_cast<const virtualGame*>(&i);
-    return vi && item::operator==(i) &&
+    return vi && itemBase::operator==(i) &&
            ( getPiattaForma() == vi->getPiattaForma() || getPiattaForma()=="" || vi->getPiattaForma()=="" ) &&
            ( getSeasonPass() == vi->getSeasonPass() || getSeasonPass() || vi->getSeasonPass() );
 }
 
 //operator!=
-bool virtualGame::operator!=(const item& i) const
+bool virtualGame::operator!=(const itemBase& i) const
 {
     const virtualGame *vi = dynamic_cast<const virtualGame*>(&i);
     if(!vi)
         return true;
     bool ret = false;
-    if( item::operator!=(i) )
+    if( itemBase::operator!=(i) )
     {
         return true;
     }
@@ -113,15 +113,15 @@ bool virtualGame::operator!=(const item& i) const
 
 //metodo virtuale per prendere i dati
 std::string virtualGame::infoItem() {
-    std::string og = item::infoItem();
+    std::string og = itemBase::infoItem();
         return og.append("\n").append("Piattaforma: " + getPiattaForma())
-                .append("\nSeason Pass: ").append(getSeasonPass() ? "Si" : "No");
-                //.append("\nPrezzo: " + std::to_string(calcolaPrezzo()));
+                .append("\nSeason Pass: ").append(getSeasonPass() ? "Si" : "No")
+                .append("\nPrezzo: " + (QString::number(calcolaPrezzo()).toUtf8()) );//uso libreria QT può dare problemi con i compilatori windows il to string
 }
 
 
 //operator <<
 std::ostream& operator<<(std::ostream& os, const virtualGame& phy)
 {
-    return operator<<(os, static_cast<const item&>(phy)) << "\nPiattaforma: " << phy.getPiattaForma() << "\nSeason pass: "<< (phy.getSeasonPass()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();
+    return operator<<(os, static_cast<const itemBase&>(phy)) << "\nPiattaforma: " << phy.getPiattaForma() << "\nSeason pass: "<< (phy.getSeasonPass()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();
 }

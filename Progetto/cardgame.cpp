@@ -1,7 +1,7 @@
 #include "cardgame.h"
 
 //costrtuttore
-cardGame::cardGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string espa="inserisci espansione", bool edi=0, int numc=11, bool deck=0): item(tit,casa,prezzo), espansione(espa),  primaEdizione(edi), numeroCarte(numc) ,starterDeck(deck) {}
+cardGame::cardGame(string tit="inserisci il titolo", string casa="inserisci la casa", double prezzo=0, string espa="inserisci espansione", bool edi=0, int numc=11, bool deck=0): itemBase(tit,casa,prezzo), espansione(espa),  primaEdizione(edi), numeroCarte(numc) ,starterDeck(deck) {}
 
 //getEspansione
 string cardGame::getEspansione() const
@@ -28,7 +28,7 @@ bool cardGame::getStarterDeck() const
 }
 
 //costrtuttore di copia
-cardGame::cardGame(const cardGame & card): item(card), espansione(card.getEspansione()), primaEdizione(card.getPrimaEdizione()), numeroCarte(card.getNumeroCarte()), starterDeck(card.getStarterDeck()) {}
+cardGame::cardGame(const cardGame & card): itemBase(card), espansione(card.getEspansione()), primaEdizione(card.getPrimaEdizione()), numeroCarte(card.getNumeroCarte()), starterDeck(card.getStarterDeck()) {}
 
 //calcola prezzo virtuale
 double cardGame::calcolaPrezzo() const
@@ -61,10 +61,10 @@ string cardGame::getTipo() const
 }
 
 //operator==
-bool cardGame::operator==(const item& i) const
+bool cardGame::operator==(const itemBase& i) const
 {
     const cardGame *ca = dynamic_cast<const cardGame*>(&i);
-    return ca && item::operator==(i) &&
+    return ca && itemBase::operator==(i) &&
            ( getEspansione() == ca->getEspansione() || getEspansione()=="" || ca->getEspansione()=="" ) &&
            ( getPrimaEdizione() == ca->getPrimaEdizione() || getPrimaEdizione() || ca->getPrimaEdizione() ) &&
            ( getNumeroCarte() == ca->getNumeroCarte() || getNumeroCarte()==0 || ca->getNumeroCarte()==0 ) &&
@@ -72,13 +72,13 @@ bool cardGame::operator==(const item& i) const
 }
 
 //operator!=
-bool cardGame::operator!=(const item& i) const
+bool cardGame::operator!=(const itemBase& i) const
 {
     const cardGame *ca = dynamic_cast<const cardGame*>(&i);
     if(!ca)
         return true;
     bool ret = false;
-    if( item::operator!=(i) )
+    if( itemBase::operator!=(i) )
     {
         return true;
     }
@@ -131,15 +131,15 @@ bool cardGame::operator!=(const item& i) const
 
 //metodo virtuale per prendere i dati
 std::string cardGame::infoItem() {
-    std::string og = item::infoItem();
+    std::string og = itemBase::infoItem();
         return og.append("\n").append("Espansione: " + getEspansione())
                 .append("\nPrima edizione: ").append(getPrimaEdizione() ? "Si" : "No")
-                //.append("\nNumero carte: " + std::to_string(getNumeroCarte()))
-                .append("\nStarter deck: ").append(getStarterDeck() ? "Si" : "No");
-                //.append("\nPrezzo: " + std::to_string(calcolaPrezzo()));
+                .append("\nNumero carte: " + (QString::number(getNumeroCarte()).toUtf8()) )//uso libreria QT può dare problemi con i compilatori windows il to string
+                .append("\nStarter deck: ").append(getStarterDeck() ? "Si" : "No")
+                .append("\nPrezzo: " + (QString::number(calcolaPrezzo()).toUtf8()) );//uso libreria QT può dare problemi con i compilatori windows il to string
 }
 
 //operator <<
 std::ostream& operator<<(std::ostream& os, const cardGame& phy) {
-    return operator<<(os, static_cast<const item&>(phy)) << "\nEspansione: " << phy.getEspansione() << "\nPrima edizione: "<< (phy.getPrimaEdizione()? "Si":"No") << "\nNumero di carte presenti: " << phy.getNumeroCarte() << "\nStarter Deck: "<< (phy.getStarterDeck()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();
+    return operator<<(os, static_cast<const itemBase&>(phy)) << "\nEspansione: " << phy.getEspansione() << "\nPrima edizione: "<< (phy.getPrimaEdizione()? "Si":"No") << "\nNumero di carte presenti: " << phy.getNumeroCarte() << "\nStarter Deck: "<< (phy.getStarterDeck()? "Si":"No") << "\nPrezzo: " << phy.calcolaPrezzo();
 }

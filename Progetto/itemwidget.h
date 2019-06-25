@@ -17,7 +17,7 @@ private:
     QWidget* parent;
 public:
     itemWidget(QWidget* = NULL);
-    void aggiungiItem(item *);//aggiungere un item passando il puntatore di quell oggetto
+    void aggiungiItem(itemBase *);//aggiungere un item passando il puntatore di quell oggetto
     //listaditem* itemCorrente() const;//da aggiungere item corrente
 };
 

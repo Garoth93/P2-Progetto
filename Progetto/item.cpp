@@ -1,49 +1,49 @@
 #include "item.h"
 
 //costruttore item
-item::item (string tit, string casa, double prezzoB): titolo(tit), casaProduttrice(casa), prezzoBase(prezzoB) {}
+itemBase::itemBase (string tit, string casa, double prezzoB): titolo(tit), casaProduttrice(casa), prezzoBase(prezzoB) {}
 
 //costruttore di copia
-item::item (const item & ite): titolo(ite.getTitolo()), casaProduttrice(ite.getCasaProdruttrice()), prezzoBase(ite.getPrezzoBase()) {}
+itemBase::itemBase (const itemBase & ite): titolo(ite.getTitolo()), casaProduttrice(ite.getCasaProdruttrice()), prezzoBase(ite.getPrezzoBase()) {}
 
 //getTiolo
-string item::getTitolo() const
+string itemBase::getTitolo() const
 {
     return titolo;
 }
 
 //getCasaProduttrice
-string item::getCasaProdruttrice() const
+string itemBase::getCasaProdruttrice() const
 {
     return casaProduttrice;
 }
 
 //getPrezzoBase
-double item::getPrezzoBase() const
+double itemBase::getPrezzoBase() const
 {
     return prezzoBase;
 }
 
 //set titolo
-void item::setTitolo(string s)
+void itemBase::setTitolo(string s)
 {
     titolo=s;
 }
 
 //set casa produttrice
-void item::setCasaProduttrice(string s)
+void itemBase::setCasaProduttrice(string s)
 {
     casaProduttrice=s;
 }
 
 //set prezzo base
-void item::setPrezzoBase(double d)
+void itemBase::setPrezzoBase(double d)
 {
     prezzoBase=d;
 }
 
 //operator ==
-bool item::operator==(const item& i) const
+bool itemBase::operator==(const itemBase& i) const
 {
     return ( titolo==i.titolo || titolo=="" || i.titolo=="") &&
            ( casaProduttrice==i.casaProduttrice || casaProduttrice=="" || i.casaProduttrice=="" ) &&
@@ -51,7 +51,7 @@ bool item::operator==(const item& i) const
 }
 
 //operator !=
-bool item::operator!=(const item& i) const
+bool itemBase::operator!=(const itemBase& i) const
 {
     bool ret = false;
     if(titolo=="" || i.titolo=="")
@@ -91,7 +91,7 @@ bool item::operator!=(const item& i) const
 }
 
 //metodo per estrappolare i dati e metterli in stringa
-std::string item::infoItem() {
+std::string itemBase::infoItem() {
     std::string str = "";
     return str.append("\n").append("Tipologia prodotto: " + getTipo())
             .append("\nTitolo: " + getTitolo())
@@ -99,7 +99,7 @@ std::string item::infoItem() {
 }
 
 //operator <<
-std::ostream& operator<<(std::ostream& os, const item& ite)
+std::ostream& operator<<(std::ostream& os, const itemBase& ite)
 {
     return os<< "Titolo: " << ite.getTitolo() << "\nProdotto da: " << ite.getCasaProdruttrice();
 }

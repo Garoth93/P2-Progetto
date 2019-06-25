@@ -2,7 +2,7 @@
 #define CARDGAME_H
 #include "item.h"
 
-class cardGame : public item
+class cardGame : public itemBase
 {
     private:
         string espansione;
@@ -19,8 +19,8 @@ class cardGame : public item
         double calcolaPrezzo () const;//metodo virtuale
         string getTipo() const;//metodo virtuale
 
-        bool operator==(const item&) const;//operator==
-        bool operator!=(const item&) const;//operator==
+        bool operator==(const itemBase&) const;//operator==
+        bool operator!=(const itemBase&) const;//operator==
 
         //metodo virtuale per prendere i dati
         virtual string infoItem();//const?

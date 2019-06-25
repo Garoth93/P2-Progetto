@@ -1,7 +1,7 @@
 #include "listaditem.h"
 
 //costrtuttore
-listaditem::listaditem(QWidget* p , item* ogg):
+listaditem::listaditem(QWidget* p , itemBase* ogg):
     parent(p),
     oggetto(ogg)
 {
@@ -9,7 +9,7 @@ listaditem::listaditem(QWidget* p , item* ogg):
 }
 
 //serve per ritornare il mio oggetto presente in questo widget
-item* listaditem::prelevaItem() const{
+itemBase* listaditem::prelevaItem() const{
     return oggetto;
 }
 

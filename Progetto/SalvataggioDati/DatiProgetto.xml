@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--!!!Non modificate-->
 <root>
-    <VideogiocoFisico titolo="Fifa19" casaProduttrice="Eletronic Arts" prezzoBase="25" qualeConsole="PS4" edizione="standard"/>
-    <VideogiocoFisico titolo="Fifa18" casaProduttrice="Eletronic Arts" prezzoBase="15" qualeConsole="PS4" edizione="standard"/>
+    <VideogiocoFisico titolo="Fifa19" casaProduttrice="Eletronic Arts" prezzoBase="25" qualeConsole="ps4" edizione="standard"/>
+    <VideogiocoFisico titolo="Fifa18" casaProduttrice="Eletronic Arts" prezzoBase="15" qualeConsole="ps4" edizione="standard"/>
+	<VideogiocoFisico titolo="Yoshi crafted world" casaProduttrice="Nintendo" prezzoBase="15" qualeConsole="nintendo switch" edizione="standard"/>
+	<VideogiocoFisico titolo="Call of duty" casaProduttrice="Activision" prezzoBase="15" qualeConsole="xbox one" edizione="standard"/>
+	<VideogiocoFisico titolo="Mario kart 8" casaProduttrice="Nintendo" prezzoBase="25" qualeConsole="nintendo switch" edizione="standard"/>
+	<VideogiocoVirtuale titolo="Call of Duty Bo4" casaProduttrice="Activision" prezzoBase="15" piattaForma="Battle" seasonPass="true"/>
+	<VideogiocoVirtuale titolo="Shadow of the Tomb Raider" casaProduttrice="Square Enix" prezzoBase="25" piattaForma="steam" seasonPass="true"/>
+	<GiocoDiCarte titolo="Drago del giudizio" casaProduttrice="Konami" prezzoBase="15" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
+	<GiocoDiCarte titolo="Lumina fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
+	<GiocoDiCarte titolo="Wulf fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
+	<GiocoDiCarte titolo="Lyla fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
 </root>
-

@@ -25,6 +25,9 @@ private:
     negozio * negl;
     QTabWidget * tab;
     cercapage * cercapagina;
+public slots:
+    //carica i dati nel negozio
+    void caricaDatiNegozio();
 public:
     controller(QWidget * parent= NULL);
 };

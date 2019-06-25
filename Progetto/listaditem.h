@@ -12,10 +12,10 @@ class listaditem : public QListWidgetItem
 {
 private:
     QWidget* parent;//puntatore a qwidget che sarà il mio widget per inserire i dati
-    item* oggetto;//puntatore polimorfo al mio oggetto
+    itemBase* oggetto;//puntatore polimorfo al mio oggetto
 public:
-    listaditem(QWidget*, item* = NULL);//costrtuttore
-    item* prelevaItem() const;//serve per prendere il mio item da inserire poi
+    listaditem(QWidget*, itemBase* = NULL);//costrtuttore
+    itemBase* prelevaItem() const;//serve per prendere il mio item da inserire poi
     void update();
 };
 

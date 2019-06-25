@@ -3,9 +3,11 @@
 #include <string.h>
 #include <iostream>
 
+#include <QString>
+
 using std::string;
 
-class item
+class itemBase
 {
     private:
         string titolo;
@@ -13,9 +15,9 @@ class item
         double prezzoBase;
     public:
         //costrtuttori
-        item (string, string, double);//costruttore
-        item (const item &);//costruttore di copia
-        virtual ~item() = default;//distruttore virtuale
+        itemBase (string, string, double);//costruttore
+        itemBase (const itemBase &);//costruttore di copia
+        virtual ~itemBase() = default;//distruttore virtuale
 
         virtual double calcolaPrezzo() const = 0; //metodo virtuale per calcolare il prezzo
         virtual string getTipo() const =0;//metodo virtuale per il sottotipo
@@ -31,13 +33,13 @@ class item
         void setPrezzoBase(double);//set prezzo base
 
         //operator
-        virtual bool operator==(const item&) const;//operator==
-        virtual bool operator!=(const item&) const;//operator!=
+        virtual bool operator==(const itemBase&) const;//operator==
+        virtual bool operator!=(const itemBase&) const;//operator!=
 
         //metodo per estrappolare i dati e metterli in stringa
         virtual string infoItem();//const?
 };
 
-std::ostream& operator<<(std::ostream& , const item& );//operator << esterno alla classe
+std::ostream& operator<<(std::ostream& , const itemBase& );//operator << esterno alla classe
 
 #endif // ITEM_H

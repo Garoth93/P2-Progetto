@@ -2,7 +2,7 @@
 #define VIRTUALGAME_H
 #include "item.h"
 
-class virtualGame  : public item
+class virtualGame  : public itemBase
 {
     private:
         string piattaForma;
@@ -24,8 +24,8 @@ class virtualGame  : public item
         string getTipo() const;//metodo virtuale gettipo
 
         //operator
-        bool operator==(const item&) const;//operator==
-        bool operator!=(const item&) const;//operator!=
+        bool operator==(const itemBase&) const;//operator==
+        bool operator!=(const itemBase&) const;//operator!=
 
         //metodo virtuale per prendere i dati
         virtual string infoItem();//const?

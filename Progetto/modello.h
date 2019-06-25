@@ -10,7 +10,7 @@
 class modello
 {
 private:
-    Contenitore<item *>* lista;
+    Contenitore<itemBase *>* lista;
     std::string Path;
     bool datiSalvati;//controllo per vedere se ci sono i dati salvati
 public:
@@ -21,12 +21,12 @@ public:
     void caricamento(); //Caricamento dei dati
     void setNuovoPercorso(std::string);
 
-    Contenitore<item*>::Iterator mbegin();//return iteratore begin
-    Contenitore<item*>::Iterator mend();//return itaratore end
-    Contenitore<item*>::Constiterator mcbegin() const;
-    Contenitore<item*>::Constiterator mcend() const;
+    Contenitore<itemBase*>::Iterator mbegin();//return iteratore begin
+    Contenitore<itemBase*>::Iterator mend();//return itaratore end
+    Contenitore<itemBase*>::Constiterator mcbegin() const;
+    Contenitore<itemBase*>::Constiterator mcend() const;
 
-    Contenitore<item*>* getlista() const;//return di puntatore al mio contenitore
+    Contenitore<itemBase*>* getlista() const;//return di puntatore al mio contenitore
 
     //rimozione
     //getlista

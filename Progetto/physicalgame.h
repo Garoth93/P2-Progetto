@@ -2,7 +2,7 @@
 #define PHYSICALGAME_H
 #include "item.h"
 
-class physicalGame : public item
+class physicalGame : public itemBase
 {
     private:
         string qualeConsole;
@@ -15,8 +15,8 @@ class physicalGame : public item
         string getQualeConsole () const;//get console
         string getEdizione () const;//get edizione
 
-        bool operator==(const item&) const;//operator==
-        bool operator!=(const item&) const;//operator!=
+        bool operator==(const itemBase&) const;//operator==
+        bool operator!=(const itemBase&) const;//operator!=
 
         //altri metodi
         virtual string infoItem();//const?

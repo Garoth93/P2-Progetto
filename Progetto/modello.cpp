@@ -7,7 +7,7 @@
 
 //costruttore modello
 modello::modello(std::string p):
-    lista(new Contenitore<item*>),
+    lista(new Contenitore<itemBase*>),
     Path(p),
     datiSalvati(true)
 {}
@@ -17,27 +17,27 @@ modello::~modello(){delete lista;}
 
 //FUNZIONI CHE RITORNANO DA QUELLE DENTRO IL CONTENITORE
 //begin
-Contenitore<item*>::Iterator modello::mbegin(){
+Contenitore<itemBase*>::Iterator modello::mbegin(){
     return lista->begin();
 }
 
 //end
-Contenitore<item*>::Iterator modello::mend(){
+Contenitore<itemBase*>::Iterator modello::mend(){
     return lista->end();
 }
 
 //cbegin
-Contenitore<item*>::Constiterator modello::mcbegin() const{
+Contenitore<itemBase*>::Constiterator modello::mcbegin() const{
     return lista->cbegin();
 }
 
 //mcend
-Contenitore<item*>::Constiterator modello::mcend() const{
+Contenitore<itemBase*>::Constiterator modello::mcend() const{
     return lista->cend();
 }
 
 //getlista
-Contenitore<item*>* modello::getlista() const{
+Contenitore<itemBase*>* modello::getlista() const{
     return lista;
 }
 
@@ -60,7 +60,7 @@ void modello::caricamento(){
                 std::string casaProduttrice = attributo.hasAttribute("casaProduttrice") ? attributo.value("casaProduttrice").toString().toStdString() : "";
                 double prezzoBase = attributo.hasAttribute("prezzoBase") ? attributo.value("prezzoBase").toDouble() : 0;
 
-                item* daInserire = NULL;//why?
+                itemBase* daInserire = NULL;//why?
 
                 if(lettore.name() == "VideogiocoFisico"){
                     std::string qualeConsole = attributo.hasAttribute("qualeConsole") ? attributo.value("qualeConsole").toString().toStdString() : "";
@@ -104,7 +104,7 @@ void modello::setNuovoPercorso(std::string p){
     Path = p;
     delete lista;
     datiSalvati = false;
-    lista = new Contenitore<item*>();
+    lista = new Contenitore<itemBase*>();
 }
 
 
