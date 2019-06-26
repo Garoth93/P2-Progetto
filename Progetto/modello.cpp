@@ -99,6 +99,64 @@ void modello::caricamento(){
     fileSalvataggio.close();
 }
 
+//salvataggio dei dati nel file xml
+void modello::salvataggio(){
+    QSaveFile file(QString::fromStdString(Path));
+
+    if(!file.open(QIODevice::WriteOnly)) {
+        return;
+    }
+
+    QXmlStreamWriter lettore(&file);
+
+    lettore.setAutoFormatting(true); // Per leggibilità del file XML
+    lettore.writeStartDocument();  // Scrive le intestazioni XML
+    lettore.writeComment("!!!Non modificate");
+
+    lettore.writeStartElement("root");
+
+    Contenitore<itemBase*>::Constiterator it = mcbegin();
+    //auto it = mcbegin();//iteratore automatico e lo setto a inizio del mio contenitore
+    while(it != mcend()){
+        const itemBase* daSalvare = *it;
+        QString tipologiaOgg = QString::fromStdString(daSalvare->getTipo());
+        /*controllo del gettipo*/
+        if(tipologiaOgg == "physicalgame")//per videogioco fisico
+            tipologiaOgg = "VideogiocoFisico";
+        if(tipologiaOgg == "virtualgame")//per videogioco virtuale
+            tipologiaOgg = "VideogiocoVirtuale";
+        if(tipologiaOgg == "cardgame")//per videogioco di carte
+            tipologiaOgg = "GiocoDiCarte";
+        lettore.writeEmptyElement(tipologiaOgg);
+        lettore.writeAttribute("titolo", QString::fromStdString(daSalvare->getTitolo()));
+        lettore.writeAttribute("casaProduttrice", QString::fromStdString(daSalvare->getCasaProdruttrice()));
+        lettore.writeAttribute("prezzoBase", QString("%1").arg(daSalvare->getPrezzoBase()));
+
+        if(tipologiaOgg == "VideogiocoFisico"){
+            const physicalGame* oggVideogioco = static_cast<const physicalGame*>(daSalvare);
+            lettore.writeAttribute("qualeConsole", QString::fromStdString(oggVideogioco->getQualeConsole()));
+            lettore.writeAttribute("edizione", QString::fromStdString(oggVideogioco->getEdizione()));
+        } else if(tipologiaOgg == "VideogiocoVirtuale"){
+            const virtualGame* oggGiocoVirtuale = static_cast<const virtualGame*>(daSalvare);
+            lettore.writeAttribute("piattaForma", QString::fromStdString(oggGiocoVirtuale->getPiattaForma()));
+            lettore.writeAttribute("seasonPass", oggGiocoVirtuale->getSeasonPass() ? "true" : "false");
+        } else if(tipologiaOgg == "GiocoDiCarte"){
+            const cardGame* oggGiocoCarte = static_cast<const cardGame*>(daSalvare);
+            lettore.writeAttribute("espansione", QString::fromStdString(oggGiocoCarte->getEspansione()));
+            lettore.writeAttribute("primaEdizione", oggGiocoCarte->getPrimaEdizione() ? "true" : "false");
+            lettore.writeAttribute("numeroCarte", QString("%1").arg(oggGiocoCarte->getNumeroCarte()));
+            lettore.writeAttribute("starterDeck", oggGiocoCarte->getStarterDeck() ? "true" : "false");
+        }
+
+        ++it;
+    }
+
+    lettore.writeEndElement();
+    lettore.writeEndDocument();
+    datiSalvati = true;
+    file.commit();
+}
+
 //settare un nuovo percorso per io dati
 void modello::setNuovoPercorso(std::string p){
     Path = p;

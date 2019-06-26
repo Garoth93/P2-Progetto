@@ -20,6 +20,7 @@ public:
     //void salvataggio(); //Salvataggio dei dati
     void caricamento(); //Caricamento dei dati
     void setNuovoPercorso(std::string);
+    void salvataggio();
 
     Contenitore<itemBase*>::Iterator mbegin();//return iteratore begin
     Contenitore<itemBase*>::Iterator mend();//return itaratore end

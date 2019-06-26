@@ -18,6 +18,7 @@ controller::controller(QWidget *parent):
     tab->setTabPosition(QTabWidget::South);//posiozione del "menù" tab
     tab->addTab(negl,"Negozio");//aggiungo alla tab il mio Qwidget ricorda vuole
     tab->addTab(cercapagina,"Ricerca");
+
     layoutPrincipale->addWidget(tab);//aggingo la mia tab all layout principale
 
     //connect per bottone visualizzazione videogioco fisico nel negozio
