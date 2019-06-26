@@ -3,6 +3,8 @@
 
 #include<QListWidgetItem>
 
+#include<QPushButton>
+
 #include "physicalgame.h"
 #include "cardgame.h"
 #include "virtualgame.h"

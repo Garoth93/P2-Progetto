@@ -17,7 +17,6 @@ public:
     modello(std::string = ":/Salvataggio dati");
     ~modello();
 
-    //void salvataggio(); //Salvataggio dei dati
     void caricamento(); //Caricamento dei dati
     void setNuovoPercorso(std::string);
     void salvataggio();
@@ -28,8 +27,8 @@ public:
     Contenitore<itemBase*>::Constiterator mcend() const;
 
     Contenitore<itemBase*>* getlista() const;//return di puntatore al mio contenitore
-
-    //rimozione
+    Contenitore<itemBase*>::Iterator melimina( Contenitore<itemBase*>::Iterator itel );
+    void meliminanoi( Contenitore<itemBase*>::Iterator itel );
     //getlista
 
 };

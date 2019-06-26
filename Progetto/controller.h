@@ -29,6 +29,7 @@ public slots:
     //carica i dati nel negozio
     void caricaDatiNegozio();
     void avviaRicercaOgg();
+    void eliminaOggetto();
 public:
     controller(QWidget * parent= NULL);
 };

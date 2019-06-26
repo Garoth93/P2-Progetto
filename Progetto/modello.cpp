@@ -36,6 +36,15 @@ Contenitore<itemBase*>::Constiterator modello::mcend() const{
     return lista->cend();
 }
 
+//melimina
+Contenitore<itemBase*>::Iterator modello::melimina( Contenitore<itemBase*>::Iterator ite ){
+    return lista->erase(ite);
+}
+//meliminanoi
+void modello::meliminanoi(Contenitore<itemBase *>::Iterator itel){
+    lista->erasenoi(itel);
+}
+
 //getlista
 Contenitore<itemBase*>* modello::getlista() const{
     return lista;

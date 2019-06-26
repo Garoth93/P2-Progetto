@@ -80,6 +80,7 @@ class Contenitore
         Iterator begin() const;
         Iterator end() const;
         Iterator erase(Iterator);
+        void erasenoi(Iterator);
         //erase return un iteratore rif costante
 };
 
@@ -328,8 +329,13 @@ typename Contenitore<T>::Iterator Contenitore<T>::erase(Iterator it)
 
     if( (it.pt)->prev )//caso se esiste il nodo precendente
         ((it.pt)->prev)->next=(it.pt)->next;
-    else//se non esiste aggioranre primo nodo dentro al contenitore
-        first=(it.pt)->next;
+    else{//se non esiste aggioranre primo nodo dentro al contenitore
+        if((it.pt)->next){
+            first=(it.pt)->next;
+        }else{
+            first=NULL;
+        }
+    }
 
     if( (it.pt)->next )//caso se esiste il nodo sucessivo
         ((it.pt)->next)->prev=(it.pt)->prev;
@@ -341,5 +347,91 @@ typename Contenitore<T>::Iterator Contenitore<T>::erase(Iterator it)
 
     ++it;//incremento iteratore
     return it;
+}
+
+//erasaenoi Iterator
+template<typename T>
+void Contenitore<T>::erasenoi(Iterator it)
+{
+    //Cosa succede se la chiamo quando è pass the end???? return se stesso
+
+    if( (!(it.pt)->prev) && (!(it.pt)->next))//se è unico nodo presente nella lista
+    {
+        first=NULL;
+        last=NULL;
+        //delete (it.pt);
+    }else{
+
+        if(!(it.pt)->next)//caso se è l'ultimo nodo presente nella lista
+        {
+            last=(it.pt)->prev;
+            //((it.pt)->prev)->next=NULL;
+            //delete (it.pt);
+        }
+        if(!(it.pt)->prev)//caso se è il primo nodo presente nella lista
+        {
+            first=(it.pt)->next;
+            //((it.pt)->next)->prev=NULL;
+            //delete (it.pt);
+        }
+        if( (it.pt)->prev ){//caso se esiste il nodo precendente
+            ((it.pt)->prev)->next=(it.pt)->next;
+            //delete (it.pt);
+        }
+        /*else{//se non esiste aggioranre primo nodo dentro al contenitore
+            if((it.pt)->next){
+                first=(it.pt)->next;
+            }else{
+                first=NULL;
+            }
+        }*/
+
+       if( (it.pt)->next ){//caso se esiste il nodo sucessivo
+            ((it.pt)->next)->prev=(it.pt)->prev;
+            //delete (it.pt);
+        }
+        /*else//se non esiste aggiornare ultimo nodo presente dentro il contenitore
+        {
+            last=(rit.pt);
+        }*/
+        //delete (it.pt);
+    }
+
+       /*
+    Iterator rit;
+    if( (!(it.pt)->prev) && (!(it.pt)->next))//se è unico nodo presente nella lista
+    {
+        first=NULL;
+        last=NULL;
+        rit.pt=NULL;
+        rit.pte=true;
+        //return rit;
+    }
+
+    if(!(it.pt)->next)//caso se è l'ultimo nodo presente nella lista
+    {
+        rit=(it.pt)->prev;
+    }
+
+    if( (it.pt)->prev )//caso se esiste il nodo precendente
+        ((it.pt)->prev)->next=(it.pt)->next;
+    else{//se non esiste aggioranre primo nodo dentro al contenitore
+        if((it.pt)->next){
+            first=(it.pt)->next;
+        }else{
+            first=NULL;
+        }
+    }
+
+    if( (it.pt)->next )//caso se esiste il nodo sucessivo
+        ((it.pt)->next)->prev=(it.pt)->prev;
+    else//se non esiste aggiornare ultimo nodo presente dentro il contenitore
+    {
+        last=(rit.pt);
+        //return rit;
+    }
+
+    //++it;//incremento iteratore
+    //return it;*/
 }
 #endif // CONTENITORE_H

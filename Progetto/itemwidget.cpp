@@ -15,3 +15,8 @@ void itemWidget::aggiungiItem(itemBase * gioco){
     addItem(oggetto);
 }
 
+//oggetto corrente nella lista
+listaditem * itemWidget::itemCorrente() const{
+    return static_cast<listaditem*>(QListWidget::currentItem());
+}
+

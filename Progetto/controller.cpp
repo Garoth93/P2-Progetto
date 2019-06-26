@@ -29,6 +29,9 @@ controller::controller(QWidget *parent):
 
     connect(cercapagina->getBottoneRicerca(), SIGNAL(clicked()), this, SLOT(avviaRicercaOgg()));
 
+    //dopo aver premuto il tasto elimina
+    connect(negl->getBottoneElimina(), SIGNAL(clicked()), this, SLOT(eliminaOggetto()));
+
 
 
     setLayout(layoutPrincipale);
@@ -75,6 +78,8 @@ void controller::caricaDatiNegozio(){
             negl->setFalseBottoneTutte();//setto a false il booleano nel negozio
         }
     }
+    negl->getBottoneElimina()->setEnabled(false);
+    negl->getBottoneModifica()->setEnabled(false);
 }
 
 //funzione di ricerca oggetto
@@ -90,3 +95,39 @@ void controller::avviaRicercaOgg() {
     delete provvisorio;
 }
 
+//funzione elimina oggett
+void controller::eliminaOggetto(){
+    if(negl->getInfoBottoneElimina() == true){
+        listaditem * prov = NULL;
+        itemBase * del = NULL;
+        prov = negl->getLista()->itemCorrente();
+        del = prov->prelevaItem();
+        Contenitore<itemBase*>::Iterator itini = model->mbegin();
+        Contenitore<itemBase*>::Iterator itfine = model->mend();
+        string tipoogg= del->getTipo();
+        for(; itini != itfine ; ++itini){
+            if( *del == *(*itini) ){
+                delete del;
+                model->meliminanoi(itini);
+            }
+        }
+        negl->setFalseBottoneElimina();
+        negl->getBottoneElimina()->setEnabled(false);
+        negl->getBottoneModifica()->setEnabled(false);
+        if(negl->getInfoBottoneGeneraleNeg() == true){
+            negl->setTrueBottoneTutte();
+        }else{
+            if(tipoogg == "virtualgame")
+                negl->setTrueBottoneVirtuale();
+            if(tipoogg == "cardgame")
+                negl->setTrueBottoneCarte();
+            if(tipoogg == "physicalgame")
+                negl->setTrueBottoneFisico();
+        }
+        model->salvataggio();
+        model->setNuovoPercorso(file.toStdString());
+        model->caricamento();
+        caricaDatiNegozio();
+        //manca modifica
+    }
+}
