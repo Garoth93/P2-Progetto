@@ -46,6 +46,7 @@ controller::controller(QWidget *parent):
 
 }
 
+//funzione signal per salvere i dati
 void controller::pressioneSalva(){
     if(file!=""){
         model->salvataggio();
@@ -55,6 +56,7 @@ void controller::pressioneSalva(){
     }
 }
 
+//funzione signal per chiudere il programma
 void controller::chiudiProgramma(){
     QApplication::quit();
 }
@@ -105,22 +107,26 @@ void controller::caricaDatiNegozio(){
 
 //funzione di ricerca oggetto
 void controller::avviaRicercaOgg() {
-    bool cercaOggetto = false;
-    cercapagina->getLista()->clear();
-    itemBase * provvisorio = cercapagina->creazioneOggRicerca();//creo oggetto da ricercare per poi andare a cercarlo nella  mia lista
-    Contenitore<itemBase*>::Constiterator citini = model->mcbegin();
-    Contenitore<itemBase*>::Constiterator citfine = model->mcend();
-    for(; citini != citfine ; ++citini){
-        if( *provvisorio == *(*citini) ){
-            cercaOggetto = true;
-            cercapagina->getLista()->aggiungiItem(*citini);
+    if(file!=""){
+        bool cercaOggetto = false;
+        cercapagina->getLista()->clear();
+        itemBase * provvisorio = cercapagina->creazioneOggRicerca();//creo oggetto da ricercare per poi andare a cercarlo nella  mia lista
+        Contenitore<itemBase*>::Constiterator citini = model->mcbegin();
+        Contenitore<itemBase*>::Constiterator citfine = model->mcend();
+        for(; citini != citfine ; ++citini){
+            if( *provvisorio == *(*citini) ){
+                cercaOggetto = true;
+                cercapagina->getLista()->aggiungiItem(*citini);
+            }
         }
+        if(cercaOggetto)
+            QMessageBox::warning(this, "Esito positivo!", "La ricerca ha dato risultato");
+        else
+            QMessageBox::warning(this, "Esito negativo!", "La ricerca non ha dato risultato");
+        delete provvisorio;
+    }else{
+        QMessageBox::warning(this, "Esito negativo!", "Non sono stati caricati i dati");
     }
-    if(cercaOggetto)
-        QMessageBox::warning(this, "Esito positivo!", "La ricerca ha dato risultato");
-    else
-        QMessageBox::warning(this, "Esito negativo!", "La ricerca non ha dato risultato");
-    delete provvisorio;
 }
 
 //funzione elimina oggett
@@ -167,10 +173,14 @@ void controller::eliminaOggetto(){
 
 //funzione di ins oggetto
 void controller::avviaIns() {
-    itemBase * provvisorio = pagins->creazioneOggIns();//creo oggetto da inserire per poi andare a inserire
-    model->getlista()->PushEnd(provvisorio);
-    QMessageBox::warning(this, "Esito positivo!", "Oggetto inserito");
-    model->salvataggio();
-    model->setNuovoPercorso(file.toStdString());
-    model->caricamento();
+    if(file!=""){
+        itemBase * provvisorio = pagins->creazioneOggIns();//creo oggetto da inserire per poi andare a inserire
+        model->getlista()->PushEnd(provvisorio);
+        QMessageBox::warning(this, "Esito positivo!", "Oggetto inserito");
+        model->salvataggio();
+        model->setNuovoPercorso(file.toStdString());
+        model->caricamento();
+    }else{
+        QMessageBox::warning(this, "Esito negativo!", "Non sono stati caricati i dati");
+    }
 }
