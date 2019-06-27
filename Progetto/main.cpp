@@ -16,14 +16,14 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-int main()
+/*int main()
 {
-    /*Contenitore<const item*>S(NULL,NULL);
-    const item * cff = new cardGame("uno","unouno",5,"tgcs",true,11,false);
-    const item * cfg = new cardGame("due","duedue",5,"tgcs",true,11,false);
+    Contenitore<const itemBase*>S(NULL,NULL);
+    const itemBase * cff = new cardGame("uno","unouno",5,"tgcs",true,11,false);
+    const itemBase * cfg = new cardGame("due","duedue",5,"tgcs",true,11,false);
     S.PushEnd(cff);
     S.PushBegin(cfg);
-    Contenitore<const item*>::Constiterator cit = S.cbegin();
+    Contenitore<const itemBase*>::Constiterator cit = S.cbegin();
     std::cout << *(*cit) << std::endl;
     ++cit;
     std::cout << *(*cit) << std::endl;
@@ -68,5 +68,5 @@ int main()
     }
     if(*aa != *bb){
        std::cout << "diversi" << std::endl;
-    }*/
-}
+    }
+}*/

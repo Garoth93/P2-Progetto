@@ -5,6 +5,7 @@
 #include <negozio.h>
 #include <cercapage.h>
 #include <modello.h>
+#include <paginainserimento.h>
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -23,12 +24,14 @@ private:
     QVBoxLayout *layoutPrincipale;
     menu * mymenu;
     negozio * negl;
+    paginainserimento * pagins;
     QTabWidget * tab;
     cercapage * cercapagina;
 public slots:
     //carica i dati nel negozio
     void caricaDatiNegozio();
     void avviaRicercaOgg();
+    void avviaIns();
     void eliminaOggetto();
 public:
     controller(QWidget * parent= NULL);

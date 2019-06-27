@@ -5,6 +5,7 @@ controller::controller(QWidget *parent):
     layoutPrincipale(new QVBoxLayout(this)),
     mymenu(new menu(this)),
     negl(new negozio(this)),
+    pagins(new paginainserimento(this)),
     tab(new QTabWidget(this)),
     cercapagina(new cercapage(this)),
     file(QFileDialog::getOpenFileName(this, tr("Scegli FIle"), "Progetto/SalvataggioDati", "File XML(*.xml)")),//prova per model sistemare
@@ -18,6 +19,7 @@ controller::controller(QWidget *parent):
     tab->setTabPosition(QTabWidget::South);//posiozione del "menù" tab
     tab->addTab(negl,"Negozio");//aggiungo alla tab il mio Qwidget ricorda vuole
     tab->addTab(cercapagina,"Ricerca");
+    tab->addTab(pagins,"Inserisci nuovo oggetto");
 
     layoutPrincipale->addWidget(tab);//aggingo la mia tab all layout principale
 
@@ -32,6 +34,8 @@ controller::controller(QWidget *parent):
     //dopo aver premuto il tasto elimina
     connect(negl->getBottoneElimina(), SIGNAL(clicked()), this, SLOT(eliminaOggetto()));
 
+    //dopo aver premuto il tasto ins
+    connect(pagins->getBottoneInserimento(), SIGNAL(clicked()), this, SLOT(avviaIns()));
 
 
     setLayout(layoutPrincipale);
@@ -142,4 +146,14 @@ void controller::eliminaOggetto(){
         model->caricamento();
         caricaDatiNegozio();
     }
+}
+
+//funzione di ins oggetto
+void controller::avviaIns() {
+    itemBase * provvisorio = pagins->creazioneOggIns();//creo oggetto da ricercare per poi andare a cercarlo nella  mia lista
+    model->getlista()->PushEnd(provvisorio);
+    QMessageBox::warning(this, "Esito positivo!", "Oggetto inserito");
+    model->salvataggio();
+    model->setNuovoPercorso(file.toStdString());
+    model->caricamento();
 }

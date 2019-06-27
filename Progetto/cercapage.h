@@ -63,7 +63,6 @@ public slots://creo slot per signal
     void radiobuttonslot();
     void pressTastoRicerca();
 public:
-    //creo un metodo che guarda tutti i checkbox per con is cecked e nel mentre mi cambia le variabili
     cercapage(QWidget* parent);
     //creo oggetto per la ricerca
     itemBase * creazioneOggRicerca();
