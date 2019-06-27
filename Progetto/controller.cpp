@@ -167,7 +167,7 @@ void controller::eliminaOggetto(){
 
 //funzione di ins oggetto
 void controller::avviaIns() {
-    itemBase * provvisorio = pagins->creazioneOggIns();//creo oggetto da ricercare per poi andare a cercarlo nella  mia lista
+    itemBase * provvisorio = pagins->creazioneOggIns();//creo oggetto da inserire per poi andare a inserire
     model->getlista()->PushEnd(provvisorio);
     QMessageBox::warning(this, "Esito positivo!", "Oggetto inserito");
     model->salvataggio();

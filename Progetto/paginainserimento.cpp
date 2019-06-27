@@ -21,18 +21,22 @@ paginainserimento::paginainserimento(QWidget * p):
     liconsolephyI(new QLineEdit(this)),
     liedizionephyI(new QLineEdit(this)),
     liespansioneI(new QLineEdit(this)),
-    linumerocarteI(new QLineEdit(this))
+    linumerocarteI(new QLineEdit(this)),
+    prezzoBaseI(new QLineEdit(this))
 {
     QGridLayout * mainl = new QGridLayout;//layout principale come matrice
 
     QWidget * witem = new QWidget(this);//widget per inizio ins
 
     //oggetto base item
+    QLabel * prezzoBaseIL = new QLabel("Prezzo Base",this);
     QGridLayout * litem = new QGridLayout;
     litem->addWidget(nomeUnoI,0,0,1,1);//aggiunta al mainl
     litem->addWidget(casaProdUnoI,1,0,1,1);
     litem->addWidget(nomeDueI,0,1,1,1);
     litem->addWidget(casaProdDueI,1,1,1,1);
+    litem->addWidget(prezzoBaseIL,2,0,1,1);
+    litem->addWidget(prezzoBaseI,2,1,1,1);
     witem->setLayout(litem);
     mainl->addWidget(witem,0,0,1,1);
 
@@ -161,6 +165,9 @@ QPushButton* paginainserimento::getBottoneInserimento() const {
 itemBase * paginainserimento::creazioneOggIns(){
     string nomeogg = (nomeDueI->text()).toLocal8Bit().constData();
     string casapogg = (casaProdDueI->text()).toLocal8Bit().constData();
+    string prezzoBaseins = (prezzoBaseI->text()).toLocal8Bit().constData();
+    double perzzoBaseD = atof(prezzoBaseins.c_str());
+
     if(brVideovI == true){//oggetto virtuale
         /*ricorda usiamo conversione to local 8 per windows
           possiamo usare sempre queste 2
@@ -170,13 +177,13 @@ itemBase * paginainserimento::creazioneOggIns(){
         bool seasonogg = false;
         if (seasonpassvI->isChecked())
             seasonogg = true;
-        itemBase * oggetto = new virtualGame(nomeogg,casapogg,0,piattaogg,seasonogg);
+        itemBase * oggetto = new virtualGame(nomeogg,casapogg,perzzoBaseD,piattaogg,seasonogg);
         return oggetto;
     }
     if(brVideofI == true){//oggetto fisico
         string consogg = (liconsolephyI->text()).toLocal8Bit().constData();
         string edizogg = (liedizionephyI->text()).toLocal8Bit().constData();
-        itemBase * oggetto = new physicalGame(nomeogg,casapogg,0,consogg,edizogg);
+        itemBase * oggetto = new physicalGame(nomeogg,casapogg,perzzoBaseD,consogg,edizogg);
         return oggetto;
     }
     if(brCarteI == true){//oggetto carte
@@ -188,7 +195,7 @@ itemBase * paginainserimento::creazioneOggIns(){
             primaogg = true;
         if(starterdeckcI->isChecked())
             startogg = true;
-        itemBase * oggetto = new cardGame(nomeogg,casapogg,0,espaogg,primaogg,numcoggd,startogg);
+        itemBase * oggetto = new cardGame(nomeogg,casapogg,perzzoBaseD,espaogg,primaogg,numcoggd,startogg);
         return oggetto;
     }
 }

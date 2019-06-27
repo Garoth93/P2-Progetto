@@ -29,6 +29,7 @@ private:
     QLabel * casaProdUnoI;
     QLineEdit * nomeDueI;
     QLineEdit * casaProdDueI;
+    QLineEdit * prezzoBaseI;
     //lista da visualizzare
     //itemWidget * listaI;
     //bootone cerca
