@@ -2,13 +2,11 @@
 
 menu::menu(QWidget* p):
 parent(p),
-    negozio(new QAction("Negozio", p)),
-    ricerca(new QAction("Ricerca", p)),
-    inserisci(new QAction("Inserisci", p))
+    salvaDati(new QAction("Salva", p)),
+    esciDalProgramma(new QAction("Esci", p))
 {
     //Assemblo il menu
-        addAction(negozio);
-        addAction(ricerca);
-        addAction(inserisci);
+        addAction(salvaDati);
+        addAction(esciDalProgramma);
 }
 

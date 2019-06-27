@@ -12,10 +12,12 @@ INPUT(
 ./debug\modello.o
 ./debug\listaditem.o
 ./debug\itemwidget.o
+./debug\paginainserimento.o
 ./debug\moc_mainwindow.o
 ./debug\moc_controller.o
 ./debug\moc_menu.o
 ./debug\moc_negozio.o
 ./debug\moc_cercapage.o
 ./debug\moc_itemwidget.o
+./debug\moc_paginainserimento.o
 );

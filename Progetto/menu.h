@@ -14,9 +14,8 @@ class menu: public QMenuBar
     Q_OBJECT
 private:
     QWidget* parent;
-    QAction *negozio;
-    QAction *ricerca;
-    QAction *inserisci;
+    QAction *salvaDati;
+    QAction *esciDalProgramma;
 public:
     menu(QWidget *parent = NULL);
 };

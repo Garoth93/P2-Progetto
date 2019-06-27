@@ -84,20 +84,28 @@ void controller::caricaDatiNegozio(){
 
 //funzione di ricerca oggetto
 void controller::avviaRicercaOgg() {
+    bool cercaOggetto = false;
     cercapagina->getLista()->clear();
     itemBase * provvisorio = cercapagina->creazioneOggRicerca();//creo oggetto da ricercare per poi andare a cercarlo nella  mia lista
     Contenitore<itemBase*>::Constiterator citini = model->mcbegin();
     Contenitore<itemBase*>::Constiterator citfine = model->mcend();
     for(; citini != citfine ; ++citini){
-        if( *provvisorio == *(*citini) )
+        if( *provvisorio == *(*citini) ){
+            cercaOggetto = true;
             cercapagina->getLista()->aggiungiItem(*citini);
+        }
     }
+    if(cercaOggetto)
+        QMessageBox::warning(this, "Esito positivo!", "La ricerca ha dato risultato");
+    else
+        QMessageBox::warning(this, "Esito negativo!", "La ricerca non ha dato risultato");
     delete provvisorio;
 }
 
 //funzione elimina oggett
 void controller::eliminaOggetto(){
     if(negl->getInfoBottoneElimina() == true){
+        bool eliminazioneFatta = false;
         listaditem * prov = NULL;
         itemBase * del = NULL;
         prov = negl->getLista()->itemCorrente();
@@ -107,10 +115,15 @@ void controller::eliminaOggetto(){
         string tipoogg= del->getTipo();
         for(; itini != itfine ; ++itini){
             if( *del == *(*itini) ){
+                eliminazioneFatta = true;
                 delete del;
                 model->meliminanoi(itini);
             }
         }
+        if(eliminazioneFatta)
+            QMessageBox::warning(this, "Esito positivo!", "L'oggetto è stato rimosso dal catalogo!");
+        else
+            QMessageBox::warning(this, "Esito negativo!", "L'oggetto non è stato rimosso dal catalogo!");
         negl->setFalseBottoneElimina();
         negl->getBottoneElimina()->setEnabled(false);
         negl->getBottoneModifica()->setEnabled(false);
@@ -128,6 +141,5 @@ void controller::eliminaOggetto(){
         model->setNuovoPercorso(file.toStdString());
         model->caricamento();
         caricaDatiNegozio();
-        //manca modifica
     }
 }

@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     cercapage.cpp \
     modello.cpp \
     listaditem.cpp \
-    itemwidget.cpp
+    itemwidget.cpp \
+    paginainserimento.cpp
 
 HEADERS  += mainwindow.h \
     contenitore.h \
@@ -38,6 +39,7 @@ HEADERS  += mainwindow.h \
     cercapage.h \
     modello.h \
     listaditem.h \
-    itemwidget.h
+    itemwidget.h \
+    paginainserimento.h
 
 FORMS    += mainwindow.ui
