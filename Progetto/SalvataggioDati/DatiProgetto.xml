@@ -11,5 +11,4 @@
     <GiocoDiCarte titolo="Drago del giudizio" casaProduttrice="Konami" prezzoBase="15" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
     <GiocoDiCarte titolo="Lumina fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
     <GiocoDiCarte titolo="Wulf fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
-    <VideogiocoFisico titolo="Gezzo" casaProduttrice="Gezzo" prezzoBase="0" qualeConsole="Gezzo" edizione="Gezzo"/>
 </root>

@@ -33,6 +33,8 @@ public slots:
     void avviaRicercaOgg();
     void avviaIns();
     void eliminaOggetto();
+    void pressioneSalva();
+    void chiudiProgramma();
 public:
     controller(QWidget * parent= NULL);
 };

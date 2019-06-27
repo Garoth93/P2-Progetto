@@ -37,9 +37,26 @@ controller::controller(QWidget *parent):
     //dopo aver premuto il tasto ins
     connect(pagins->getBottoneInserimento(), SIGNAL(clicked()), this, SLOT(avviaIns()));
 
+    connect(mymenu->getSalva(), SIGNAL(triggered()), this, SLOT(pressioneSalva()));
+
+    connect(mymenu->getEsci(), SIGNAL(triggered()), this, SLOT(chiudiProgramma()));
+
 
     setLayout(layoutPrincipale);
 
+}
+
+void controller::pressioneSalva(){
+    if(file!=""){
+        model->salvataggio();
+        QMessageBox::warning(this, "Esito positivo!", "Salvataggio riuscito");
+    }else{
+        QMessageBox::warning(this, "Esito negativo!", "Non è presente il file di salvataggio e caricamento dati");
+    }
+}
+
+void controller::chiudiProgramma(){
+    QApplication::quit();
 }
 
 //funnzione public slot carica dati

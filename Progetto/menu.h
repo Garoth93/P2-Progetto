@@ -18,6 +18,8 @@ private:
     QAction *esciDalProgramma;
 public:
     menu(QWidget *parent = NULL);
+    QAction * getSalva()const;
+    QAction * getEsci()const;
 };
 
 #endif // MENU_H

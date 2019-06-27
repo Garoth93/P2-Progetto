@@ -10,3 +10,11 @@ parent(p),
         addAction(esciDalProgramma);
 }
 
+QAction* menu::getSalva() const {
+    return salvaDati;
+}
+
+QAction* menu::getEsci() const{
+    return esciDalProgramma;
+}
+
