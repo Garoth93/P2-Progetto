@@ -39,6 +39,7 @@ public slots:
    void bottoneCarte();
    void pressioneLista();
    void bottoneElimina();
+   void pressioneModifica();
 
 public:
     negozio(QWidget* parent);
@@ -66,7 +67,7 @@ public:
     bool getInfoBottoneElimina() const;
     QPushButton * getBottoneElimina() const;
     void setFalseBottoneElimina();
-    //bottone elimina
+    //bottone modifica
     bool getInfoBottoneModifica() const;
     QPushButton * getBottoneModifica() const;
     void setFalseBottoneModifica();

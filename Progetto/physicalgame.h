@@ -14,6 +14,9 @@ class physicalGame : public itemBase
         string getTipo() const;//metodo virtuale gettipo
         string getQualeConsole () const;//get console
         string getEdizione () const;//get edizione
+        //metodi di set
+        void setConsole(string);
+        void setEdizione(string);
 
         bool operator==(const itemBase&) const;//operator==
         bool operator!=(const itemBase&) const;//operator!=

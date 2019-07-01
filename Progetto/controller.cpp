@@ -28,19 +28,18 @@ controller::controller(QWidget *parent):
     connect(negl->getBottoneVirtuale(), SIGNAL(clicked()), this, SLOT(caricaDatiNegozio()));
     connect(negl->getBottoneCarte(), SIGNAL(clicked()), this, SLOT(caricaDatiNegozio()));
     connect(negl->getBottoneTutte(), SIGNAL(clicked()), this, SLOT(caricaDatiNegozio()));
-
+    //pressione tasto cerca
     connect(cercapagina->getBottoneRicerca(), SIGNAL(clicked()), this, SLOT(avviaRicercaOgg()));
-
     //dopo aver premuto il tasto elimina
     connect(negl->getBottoneElimina(), SIGNAL(clicked()), this, SLOT(eliminaOggetto()));
-
     //dopo aver premuto il tasto ins
     connect(pagins->getBottoneInserimento(), SIGNAL(clicked()), this, SLOT(avviaIns()));
-
+    //pressione salva
     connect(mymenu->getSalva(), SIGNAL(triggered()), this, SLOT(pressioneSalva()));
-
+    //pressione esci
     connect(mymenu->getEsci(), SIGNAL(triggered()), this, SLOT(chiudiProgramma()));
-
+    //pressione tasto modifica
+    connect(negl->getBottoneModifica(), SIGNAL(clicked()), this, SLOT(pressioneModifica()));
 
     setLayout(layoutPrincipale);
 
@@ -103,6 +102,19 @@ void controller::caricaDatiNegozio(){
     }
     negl->getBottoneElimina()->setEnabled(false);
     negl->getBottoneModifica()->setEnabled(false);
+}
+
+//funziona modifica
+void controller::pressioneModifica() {
+    listaditem * provM = NULL;
+    itemBase * modM = NULL;
+    provM = negl->getLista()->itemCorrente();
+    modM = provM->prelevaItem();
+    //string tipoogg = modM->getTipo();
+    paginamodifica * pm = new paginamodifica(negl,modM,model,this);
+    pm->show();
+    this->setDisabled(true);
+
 }
 
 //funzione di ricerca oggetto

@@ -13,6 +13,7 @@ INPUT(
 ./release\listaditem.o
 ./release\itemwidget.o
 ./release\paginainserimento.o
+./release\paginamodifica.o
 ./release\moc_mainwindow.o
 ./release\moc_controller.o
 ./release\moc_menu.o
@@ -20,4 +21,5 @@ INPUT(
 ./release\moc_cercapage.o
 ./release\moc_itemwidget.o
 ./release\moc_paginainserimento.o
+./release\moc_paginamodifica.o
 );

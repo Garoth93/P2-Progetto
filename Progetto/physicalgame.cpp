@@ -42,6 +42,15 @@ string physicalGame::getTipo() const
     return "physicalgame";
 }
 
+//metodi di set
+void physicalGame::setConsole(string s){
+    qualeConsole=s;
+}
+
+void physicalGame::setEdizione(string s){
+    edizione=s;
+}
+
 //operator==
 bool physicalGame::operator==(const itemBase& i) const
 {

@@ -27,6 +27,21 @@ bool cardGame::getStarterDeck() const
     return starterDeck;
 }
 
+//metodi di set
+void cardGame::setEspansione(string s){
+    espansione = s;
+}
+
+void cardGame::setPrimaEd(bool b){
+    primaEdizione = b;
+}
+void cardGame::setNumeroCarte(int n){
+    numeroCarte = n;
+}
+void cardGame::setStarterDeck(bool b){
+    starterDeck = b;
+}
+
 //costrtuttore di copia
 cardGame::cardGame(const cardGame & card): itemBase(card), espansione(card.getEspansione()), primaEdizione(card.getPrimaEdizione()), numeroCarte(card.getNumeroCarte()), starterDeck(card.getStarterDeck()) {}
 

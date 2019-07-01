@@ -189,7 +189,7 @@ itemBase * paginainserimento::creazioneOggIns(){
     if(brCarteI == true){//oggetto carte
         string espaogg = (liespansioneI->text()).toLocal8Bit().constData();
         string numcogg = (linumerocarteI->text()).toLocal8Bit().constData();
-        double numcoggd = atof(numcogg.c_str());
+        int numcoggd = atof(numcogg.c_str());
         bool primaogg = false; bool startogg = false;
         if(primaedcI->isChecked())
             primaogg = true;

@@ -18,6 +18,11 @@ class cardGame : public itemBase
         bool getStarterDeck () const;//getstarter
         double calcolaPrezzo () const;//metodo virtuale
         string getTipo() const;//metodo virtuale
+        //metodi di set
+        void setEspansione(string);
+        void setPrimaEd(bool);
+        void setNumeroCarte(int);
+        void setStarterDeck(bool);
 
         bool operator==(const itemBase&) const;//operator==
         bool operator!=(const itemBase&) const;//operator==

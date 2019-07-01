@@ -6,6 +6,7 @@
 #include <cercapage.h>
 #include <modello.h>
 #include <paginainserimento.h>
+#include <paginamodifica.h>
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -35,6 +36,7 @@ public slots:
     void eliminaOggetto();
     void pressioneSalva();
     void chiudiProgramma();
+    void pressioneModifica();
 public:
     controller(QWidget * parent= NULL);
 };

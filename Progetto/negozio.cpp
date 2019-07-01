@@ -79,6 +79,10 @@ void negozio::bottoneTutte() {
     infoGeneraleNegozioTotale=true;
 }
 
+void negozio::pressioneModifica(){
+    infoModifica = true;
+}
+
 //set a bool info elimina dopo aver premuto il tasto elimina
 void negozio::bottoneElimina(){
     infoElimina=true;

@@ -13,6 +13,7 @@ INPUT(
 ./debug\listaditem.o
 ./debug\itemwidget.o
 ./debug\paginainserimento.o
+./debug\paginamodifica.o
 ./debug\moc_mainwindow.o
 ./debug\moc_controller.o
 ./debug\moc_menu.o
@@ -20,4 +21,5 @@ INPUT(
 ./debug\moc_cercapage.o
 ./debug\moc_itemwidget.o
 ./debug\moc_paginainserimento.o
+./debug\moc_paginamodifica.o
 );
