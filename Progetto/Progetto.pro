@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     modello.cpp \
     listaditem.cpp \
     itemwidget.cpp \
-    paginainserimento.cpp
+    paginainserimento.cpp \
+    paginamodifica.cpp
 
 HEADERS  += mainwindow.h \
     contenitore.h \
@@ -40,6 +41,7 @@ HEADERS  += mainwindow.h \
     modello.h \
     listaditem.h \
     itemwidget.h \
-    paginainserimento.h
+    paginainserimento.h \
+    paginamodifica.h
 
 FORMS    += mainwindow.ui
