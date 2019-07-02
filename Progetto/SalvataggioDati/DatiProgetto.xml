@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--!!!Non modificate-->
 <root>
-    <VideogiocoFisico titolo="Fifa19" casaProduttrice="Eletronic Arts" prezzoBase="15" qualeConsole="ps4" edizione="standard"/>
-    <VideogiocoFisico titolo="Yoshi crafted world" casaProduttrice="Nintendo" prezzoBase="15" qualeConsole="nintendo switch" edizione="standard"/>
-    <VideogiocoFisico titolo="Mario kart 8" casaProduttrice="Nintendo" prezzoBase="255" qualeConsole="nintendo switch" edizione="standard"/>
-    <VideogiocoVirtuale titolo="Call of Duty Bo4" casaProduttrice="Activisionn" prezzoBase="12" piattaForma="Battle" seasonPass="true"/>
-    <VideogiocoVirtuale titolo="Shadow of the Tomb Raider" casaProduttrice="Square Enix" prezzoBase="25" piattaForma="steam" seasonPass="true"/>
-    <GiocoDiCarte titolo="Wulf fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="true"/>
-    <GiocoDiCarte titolo="asd" casaProduttrice="asd" prezzoBase="122" espansione="as" primaEdizione="true" numeroCarte="1" starterDeck="true"/>
+    <GiocoDiCarte titolo="Bello" casaProduttrice="Bella" prezzoBase="15" espansione="Mia" primaEdizione="true" numeroCarte="15" starterDeck="true"/>
+    <VideogiocoVirtuale titolo="asd" casaProduttrice="asd" prezzoBase="1" piattaForma="asd" seasonPass="true"/>
+    <VideogiocoFisico titolo="asdasd" casaProduttrice="asdasd" prezzoBase="15" qualeConsole="asd" edizione="asd"/>
 </root>

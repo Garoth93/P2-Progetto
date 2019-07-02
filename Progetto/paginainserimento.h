@@ -13,6 +13,8 @@
 #include <QRadioButton>
 #include <QGroupBox>
 #include <QCheckBox>
+#include <QMessageBox>
+#include <float.h>
 
 #include "cardgame.h"
 #include "virtualgame.h"
@@ -30,8 +32,6 @@ private:
     QLineEdit * nomeDueI;
     QLineEdit * casaProdDueI;
     QLineEdit * prezzoBaseI;
-    //lista da visualizzare
-    //itemWidget * listaI;
     //bootone cerca
     QPushButton * InsButton;//bottone inserimento
     //widget per virtuale fisico e carte
@@ -71,7 +71,8 @@ public:
     //info per lo stato e bottone ins
     bool infoStatoIns() const;
     QPushButton * getBottoneInserimento() const;
-
+    bool un_number(const std::string &s) const;
+    void pulisciLine();
 };
 
 #endif // PAGINAINSERIMENTO_H

@@ -104,15 +104,6 @@ paginainserimento::paginainserimento(QWidget * p):
     //segnale dopo aver premuto il tasto ricerca
     connect(InsButton,SIGNAL(clicked()),this,SLOT(pressTastoInserimento()));
 
-    //metto il loyout principale dentro a un widget
-    /*QWidget * mainw = new QWidget;
-    mainw->setLayout(mainl);*/
-
-    //creo il mio loyour orrizontale finale per insire i due widget finali
-    /*QHBoxLayout * mainwtot = new QHBoxLayout;
-    mainwtot->addWidget(mainw);
-    mainwtot->addWidget(lista);*/
-
     //aggiornamento layout principale
     setLayout(mainl);
 }
@@ -162,41 +153,80 @@ QPushButton* paginainserimento::getBottoneInserimento() const {
     return InsButton;
 }
 
+//controllo per sapere se è un numero da una stringa
+bool paginainserimento::un_number(const std::string &s) const{
+    char* end = 0;
+    double val = strtod(s.c_str(), &end);
+    return end != s.c_str() && val != DBL_MAX;
+}
+
+//pulisci line edit
+void paginainserimento::pulisciLine(){
+    nomeDueI->clear();
+    casaProdDueI->clear();
+    prezzoBaseI->clear();
+    lipiattaformavI->clear();
+    seasonpassvI->setChecked(false);
+    liconsolephyI->clear();
+    liedizionephyI->clear();
+    liespansioneI->clear();
+    linumerocarteI->clear();
+    primaedcI->setChecked(false);
+    starterdeckcI->setChecked(false);
+
+}
+
+//creo ogg e ritorno
 itemBase * paginainserimento::creazioneOggIns(){
     string nomeogg = (nomeDueI->text()).toLocal8Bit().constData();
     string casapogg = (casaProdDueI->text()).toLocal8Bit().constData();
     string prezzoBaseins = (prezzoBaseI->text()).toLocal8Bit().constData();
     double perzzoBaseD = atof(prezzoBaseins.c_str());
-
-    if(brVideovI == true){//oggetto virtuale
-        /*ricorda usiamo conversione to local 8 per windows
-          possiamo usare sempre queste 2
-          std::string utf8_text = qs.toUtf8().constData();
-          std::string current_locale_text = qs.toLocal8Bit().constData();*/
-        string piattaogg = (lipiattaformavI->text()).toLocal8Bit().constData();
-        bool seasonogg = false;
-        if (seasonpassvI->isChecked())
-            seasonogg = true;
-        itemBase * oggetto = new virtualGame(nomeogg,casapogg,perzzoBaseD,piattaogg,seasonogg);
-        return oggetto;
-    }
-    if(brVideofI == true){//oggetto fisico
-        string consogg = (liconsolephyI->text()).toLocal8Bit().constData();
-        string edizogg = (liedizionephyI->text()).toLocal8Bit().constData();
-        itemBase * oggetto = new physicalGame(nomeogg,casapogg,perzzoBaseD,consogg,edizogg);
-        return oggetto;
-    }
-    if(brCarteI == true){//oggetto carte
-        string espaogg = (liespansioneI->text()).toLocal8Bit().constData();
-        string numcogg = (linumerocarteI->text()).toLocal8Bit().constData();
-        int numcoggd = atof(numcogg.c_str());
-        bool primaogg = false; bool startogg = false;
-        if(primaedcI->isChecked())
-            primaogg = true;
-        if(starterdeckcI->isChecked())
-            startogg = true;
-        itemBase * oggetto = new cardGame(nomeogg,casapogg,perzzoBaseD,espaogg,primaogg,numcoggd,startogg);
-        return oggetto;
+    if((nomeogg != "") && (casapogg != "" && (un_number(prezzoBaseins)))){
+        if(brVideovI == true){//oggetto virtuale
+            /*ricorda usiamo conversione to local 8 per windows
+              possiamo usare sempre queste 2
+              std::string utf8_text = qs.toUtf8().constData();
+              std::string current_locale_text = qs.toLocal8Bit().constData();*/
+            string piattaogg = (lipiattaformavI->text()).toLocal8Bit().constData();
+            bool seasonogg = false;
+            if (seasonpassvI->isChecked())
+                seasonogg = true;
+            if(piattaogg != ""){//controllo campi dati prima di inserire
+                itemBase * oggetto = new virtualGame(nomeogg,casapogg,perzzoBaseD,piattaogg,seasonogg);
+                return oggetto;
+            }else{
+                return NULL;
+            }
+        }
+        if(brVideofI == true){//oggetto fisico
+            string consogg = (liconsolephyI->text()).toLocal8Bit().constData();
+            string edizogg = (liedizionephyI->text()).toLocal8Bit().constData();
+            if(consogg != "" && edizogg != ""){
+                itemBase * oggetto = new physicalGame(nomeogg,casapogg,perzzoBaseD,consogg,edizogg);
+                return oggetto;
+            }else{
+                return NULL;
+            }
+        }
+        if(brCarteI == true){//oggetto carte
+            string espaogg = (liespansioneI->text()).toLocal8Bit().constData();
+            string numcogg = (linumerocarteI->text()).toLocal8Bit().constData();
+            int numcoggd = atof(numcogg.c_str());
+            bool primaogg = false; bool startogg = false;
+            if(primaedcI->isChecked())
+                primaogg = true;
+            if(starterdeckcI->isChecked())
+                startogg = true;
+            if(espaogg != "" && (un_number(numcogg))){
+                itemBase * oggetto = new cardGame(nomeogg,casapogg,perzzoBaseD,espaogg,primaogg,numcoggd,startogg);
+                return oggetto;
+            }else{
+                return NULL;
+            }
+        }
+    }else{
+        return NULL;
     }
 }
 

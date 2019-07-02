@@ -187,11 +187,16 @@ void controller::eliminaOggetto(){
 void controller::avviaIns() {
     if(file!=""){
         itemBase * provvisorio = pagins->creazioneOggIns();//creo oggetto da inserire per poi andare a inserire
-        model->getlista()->PushEnd(provvisorio);
-        QMessageBox::warning(this, "Esito positivo!", "Oggetto inserito");
-        model->salvataggio();
-        model->setNuovoPercorso(file.toStdString());
-        model->caricamento();
+        if(provvisorio == NULL){
+            QMessageBox::warning(this, "Attenzione!", "Inserisci dati validi");
+        }else{
+            model->getlista()->PushEnd(provvisorio);
+            QMessageBox::warning(this, "Esito positivo!", "Oggetto inserito");
+            model->salvataggio();
+            model->setNuovoPercorso(file.toStdString());
+            model->caricamento();
+            pagins->pulisciLine();
+        }
     }else{
         QMessageBox::warning(this, "Esito negativo!", "Non sono stati caricati i dati");
     }
