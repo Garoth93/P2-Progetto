@@ -41,6 +41,8 @@ controller::controller(QWidget *parent):
     //pressione tasto modifica
     connect(negl->getBottoneModifica(), SIGNAL(clicked()), this, SLOT(pressioneModifica()));
 
+    this->resize(650,650);
+
     setLayout(layoutPrincipale);
 
 }
@@ -112,6 +114,8 @@ void controller::pressioneModifica() {
     modM = provM->prelevaItem();
     //string tipoogg = modM->getTipo();
     paginamodifica * pm = new paginamodifica(negl,modM,model,this);
+    //pm->resize(200, pm->height());
+    pm->resize(this->width(),this->height());
     pm->show();
     this->setDisabled(true);
 
