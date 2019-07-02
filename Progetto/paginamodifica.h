@@ -15,6 +15,8 @@
 #include <QGroupBox>
 #include <QCheckBox>
 #include <QMessageBox>
+#include <QCloseEvent>
+#include <float.h>
 
 #include "cardgame.h"
 #include "virtualgame.h"
@@ -39,19 +41,12 @@ private:
     QLineEdit * nomeDueI;
     QLineEdit * casaProdDueI;
     QLineEdit * prezzoBaseI;
-    //lista da visualizzare
-    //itemWidget * listaI;
     //bootone cerca
     QPushButton * InsButton;//bottone inserimento
     //widget per virtuale fisico e carte
     QWidget * wvirtualgameI;//widget per interfaccia virtual game
     QWidget * wphysicalgameI;//widget per interfaccia virtual game
     QWidget * wcardgameI;//widget card game
-    //radio button
-    /*QGroupBox *contenitoreradioI;//contenitore per i radio button
-    QRadioButton *rVideoVI;//creo tre puntatori a radio button
-    QRadioButton *rVideoFI;
-    QRadioButton *rCarteI;*/
     //checkbox
     QCheckBox * seasonpassvI;//checkbox per gioco virtuale
     QCheckBox * primaedcI;
@@ -64,12 +59,6 @@ private:
     //gioco di carte
     QLineEdit * liespansioneI;
     QLineEdit * linumerocarteI;
-
-    //bool per radiobutton
-    /*bool brVideovI = false;
-    bool brVideofI = false;
-    bool brCarteI = false;
-    bool statoIns = false;*/
 public slots:
     void pressioneInsInModifica();
 public:
@@ -77,6 +66,12 @@ public:
     paginamodifica(negozio * cc, itemBase * oggM, modello * mm, QWidget * pc);
     QPushButton * getBottoneModifca() const;
     itemBase * getOggModificabile() const;
+    //alla chiusura del widget
+    void closeEvent(QCloseEvent *event) override;
+    //refresh del mio negozio
+    void refreshNeg() const;
+    //try controllo
+    bool is_number(const std::string& s) const;
 };
 
 #endif // PAGINAMODIFICA_H

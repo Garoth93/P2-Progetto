@@ -11,10 +11,6 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
     nomeDueI(new QLineEdit(this)),//creazione edit line per inserimento nome
     casaProdDueI(new QLineEdit(this)),//creazione edit line per inserimento casa produttrice
     InsButton(new QPushButton("Inserisci",this)),//creazione bottone ins
-    /*contenitoreradioI(new QGroupBox(tr("Scegli l'oggetto"),this)),//creazione contenitore groupbox
-    rVideoVI(new QRadioButton(tr("Videogioco virtuale"),this)),//creazione 3 radio button per scegliere il tipo dell oggetto
-    rVideoFI(new QRadioButton(tr("Videogioco fisico"),this)),
-    rCarteI(new QRadioButton(tr("Gioco di carte"),this)),*/
     wvirtualgameI(new QWidget(this)),//crazione widget per i dati del gioco virtuale
     wphysicalgameI(new QWidget(this)),//crazione widget per i dati del gioco fisico
     wcardgameI(new QWidget(this)),//crazione widget per i dati del gioco dic arte
@@ -29,13 +25,11 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
     prezzoBaseI(new QLineEdit(this))
 {
     QGridLayout * mainl = new QGridLayout;//layout principale come matrice
-
     QWidget * witem = new QWidget(this);//widget per inizio ins
     //imposto i line edit per oggetto base
     nomeDueI->setText(QString::fromStdString(oggModifica->getTitolo()));
     casaProdDueI->setText(QString::fromStdString(oggModifica->getCasaProdruttrice()));
     prezzoBaseI->setText(QString::number(oggModifica->getPrezzoBase()));
-    //manca prezzo base
     //andiamo a contralle che tipo di oggetto è
     string tipoogg = oggModifica->getTipo();
     if(tipoogg == "physicalgame"){
@@ -56,7 +50,6 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
         liespansioneI->setText(QString::fromStdString( dynamic_cast<cardGame*>(oggModifica)->getEspansione()));;
         linumerocarteI->setText(QString::number(dynamic_cast<cardGame*>(oggModifica)->getNumeroCarte()));
     }
-
     //oggetto base item
     QLabel * prezzoBaseIL = new QLabel("Prezzo Base",this);
     QGridLayout * litem = new QGridLayout;
@@ -68,26 +61,8 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
     litem->addWidget(prezzoBaseI,2,1,1,1);
     witem->setLayout(litem);
     mainl->addWidget(witem,0,0,1,1);
-
-    //radio button
-    /*QVBoxLayout *vbox = new QVBoxLayout;//creo vbox per contenere i radio button
-    vbox->addWidget(rVideoVI);
-    vbox->addWidget(rVideoFI);
-    vbox->addWidget(rCarteI);
-    vbox->addStretch(1);
-    contenitoreradioI->setLayout(vbox);
-    contenitoreradioI->setFixedHeight(110);
-    contenitoreradioI->hide();//nascondo i radio button
-    mainl->addWidget(contenitoreradioI,2,0,1,1);//aggiunta radio button a mainl*/
-
     //bottone inserimento
     mainl->addWidget(InsButton,4,0,1,1);//aggiunta a mainl bottone cerca
-
-    //connect per radio button
-    /*connect(rVideoVI,SIGNAL(clicked()),this,SLOT(radiobuttonslotM()));//crazione signal per vederer cosa visualizzare
-    connect(rVideoFI,SIGNAL(clicked()),this,SLOT(radiobuttonslotM()));
-    connect(rCarteI,SIGNAL(clicked()),this,SLOT(radiobuttonslotM()));*/
-
     //ins videogioco virtuale
     QGridLayout * lvirtualgame = new QGridLayout;//layout come matrice per virtual game
     QLabel * lpiattaformav = new QLabel("Piattaforma",this);//creazione label per piattaforma gioco virtuale
@@ -98,7 +73,6 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
     lvirtualgame->addWidget(seasonpassvI,1,1,1,1);
     wvirtualgameI->setLayout(lvirtualgame);
     mainl->addWidget(wvirtualgameI,3,0,1,1);
-
     //ins videogioco fisico
     QGridLayout * lphygame = new QGridLayout;//layout come matrice per gioco fisico
     QLabel * lconsolephy = new QLabel("Nome console",this);
@@ -110,7 +84,6 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
     wphysicalgameI->setLayout(lphygame);
     wphysicalgameI->setVisible(false);
     mainl->addWidget(wphysicalgameI,3,0,1,1);
-
     //ins gioco di carte
     QGridLayout * lcardgame = new QGridLayout;//layout come matrice per gioco fisico
     QLabel * lespansione = new QLabel("Espansione",this);
@@ -128,19 +101,6 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
     wcardgameI->setLayout(lcardgame);
     wcardgameI->setVisible(false);
     mainl->addWidget(wcardgameI,3,0,1,1);
-
-    //segnale dopo aver premuto il tasto ricerca
-    //connect(InsButton,SIGNAL(clicked()),this,SLOT(pressTastoInserimento()));
-
-    //metto il loyout principale dentro a un widget
-    /*QWidget * mainw = new QWidget;
-    mainw->setLayout(mainl);*/
-
-    //creo il mio loyour orrizontale finale per insire i due widget finali
-    /*QHBoxLayout * mainwtot = new QHBoxLayout;
-    mainwtot->addWidget(mainw);
-    mainwtot->addWidget(lista);*/
-
     //aggiornamento layout principale
     if(tipoogg == "physicalgame"){
         wvirtualgameI->setVisible(false);
@@ -157,7 +117,6 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
         wphysicalgameI->setVisible(false);
         wcardgameI->setVisible(true);
     }
-
     //pressione tasto inserisci dentro la tab modifica
     connect(InsButton, SIGNAL(clicked()), this, SLOT(pressioneInsInModifica()));
     setLayout(mainl);
@@ -173,77 +132,96 @@ itemBase * paginamodifica::getOggModificabile()const{
     return oggModifica;
 }
 
-//slot signal radiobutton
-/*void paginamodifica::radiobuttonslotM() {
-        QRadioButton* srb = qobject_cast<QRadioButton*>(sender());
-        std::string name = srb->text().toStdString();
-        if(name=="Videogioco virtuale"){
-            wvirtualgameI->setVisible(true);
-            wphysicalgameI->setVisible(false);
-            wcardgameI->setVisible(false);
-            brVideovI = true;
-            brVideofI = false;
-            brCarteI = false;
-        }
-        if(name=="Videogioco fisico"){
-            wvirtualgameI->setVisible(false);
-            wphysicalgameI->setVisible(true);
-            wcardgameI->setVisible(false);
-            brVideovI = false;
-            brVideofI = true;
-            brCarteI = false;
-        }
-        if(name=="Gioco di carte"){
-            wvirtualgameI->setVisible(false);
-            wphysicalgameI->setVisible(false);
-            wcardgameI->setVisible(true);
-            brVideovI = false;
-            brVideofI = false;
-            brCarteI = true;
-        }
-}*/
+//controllo per sapere se è un numero da una stringa
+bool paginamodifica::is_number(const std::string &s) const{
+    char* end = 0;
+    double val = strtod(s.c_str(), &end);
+    return end != s.c_str() && val != DBL_MAX;
+}
 
+//pressione del tasto modifica nel widget
 void paginamodifica::pressioneInsInModifica(){
     bool mod = false;
     string tipoItem = oggModifica->getTipo();
-    oggModifica->setTitolo((nomeDueI->text()).toLocal8Bit().constData());
-    oggModifica->setCasaProduttrice((casaProdDueI->text()).toLocal8Bit().constData());
+    //item base
+    string nomeBase = (nomeDueI->text()).toLocal8Bit().constData();
+    string casaProdBase = (casaProdDueI->text()).toLocal8Bit().constData();
     string prezzoBaseSt = (prezzoBaseI->text()).toLocal8Bit().constData();
-    oggModifica->setPrezzoBase(atof(prezzoBaseSt.c_str()));
-    if(tipoItem == "physicalgame"){
-        physicalGame * prov = dynamic_cast<physicalGame*>(oggModifica);
-        prov->setConsole((liconsolephyI->text()).toLocal8Bit().constData());
-        prov->setEdizione((liedizionephyI->text()).toLocal8Bit().constData());
-        mod=true;
+    //non base
+    string consolePhy;
+    string edizPhy;
+    string piattaVir;
+    string espaCard;
+    string numcarts;
+    if(nomeBase != "" && casaProdBase != "" && (is_number(prezzoBaseSt))){//controllo input tipo base
+        if(tipoItem == "physicalgame"){//prendo input gioco fisico
+            consolePhy = (liconsolephyI->text()).toLocal8Bit().constData();
+            edizPhy = (liedizionephyI->text()).toLocal8Bit().constData();
+        }
+        if(tipoItem == "virtualgame"){//prendo input gioco virtuale
+            piattaVir = (lipiattaformavI->text()).toLocal8Bit().constData();
+        }
+        if(tipoItem == "cardgame"){//prendo input gioco carte
+            espaCard = (liespansioneI->text()).toLocal8Bit().constData();
+            numcarts = (linumerocarteI->text()).toLocal8Bit().constData();
+        }
+        if(tipoItem == "physicalgame"){
+            if(consolePhy != "" && edizPhy != ""){//controllo tipo fisico e inerisco se valido
+                physicalGame * prov = dynamic_cast<physicalGame*>(oggModifica);
+                prov->setConsole(consolePhy);
+                prov->setEdizione(edizPhy);
+                mod=true;
+            }else{
+                QMessageBox::warning(this, "Attenzione!", "Inserisci valori adatti");
+            }
+        }
+        if(tipoItem == "virtualgame"){
+            virtualGame * prov = dynamic_cast<virtualGame*>(oggModifica);
+            if(piattaVir != ""){
+                prov->setPiattaForma(piattaVir);
+                if(seasonpassvI->isChecked())
+                    prov->setSeasonPass(true);
+                else
+                    prov->setSeasonPass(false);
+                mod=true;
+            }else{
+                QMessageBox::warning(this, "Attenzione!", "Inserisci valori adatti");
+            }
+        }
+        if(tipoItem == "cardgame"){
+            cardGame * prov = dynamic_cast<cardGame*>(oggModifica);
+            if(espaCard != "" && is_number(numcarts)){
+                prov->setEspansione(espaCard);
+                if(primaedcI->isChecked())
+                    prov->setPrimaEd(true);
+                else
+                    prov->setPrimaEd(false);
+                prov->setNumeroCarte(atof(numcarts.c_str()));
+                if(starterdeckcI->isChecked())
+                    prov->setStarterDeck(true);
+                else
+                    prov->setStarterDeck(false);
+                mod=true;
+            }else{
+               QMessageBox::warning(this, "Attenzione!", "Inserisci valori adatti");
+            }
+        }
+        if(mod==true){
+            //ins mod del item base
+            oggModifica->setTitolo(nomeBase);
+            oggModifica->setCasaProduttrice(casaProdBase);
+            oggModifica->setPrezzoBase(atof(prezzoBaseSt.c_str()));
+            QMessageBox::warning(this, "Esito positivo!", "Oggetto modificato");
+            close();//chiudo il widget
+        }
+    }else{//else controllo inserimento tipo base
+        QMessageBox::warning(this, "Attenzione!", "Inserisci valori adatti");
     }
-    if(tipoItem == "virtualgame"){
-        virtualGame * prov = dynamic_cast<virtualGame*>(oggModifica);
-        prov->setPiattaForma((lipiattaformavI->text()).toLocal8Bit().constData());
-        if(seasonpassvI->isChecked())
-            prov->setSeasonPass(true);
-        else
-            prov->setSeasonPass(false);
-        mod=true;
-    }
-    if(tipoItem == "cardgame"){
-        cardGame * prov = dynamic_cast<cardGame*>(oggModifica);
-        prov->setEspansione((liespansioneI->text()).toLocal8Bit().constData());
-        if(primaedcI->isChecked())
-            prov->setPrimaEd(true);
-        else
-            prov->setPrimaEd(false);
-        string numcarts = (linumerocarteI->text()).toLocal8Bit().constData();
-        prov->setNumeroCarte(atof(numcarts.c_str()));
-        if(starterdeckcI->isChecked())
-            prov->setStarterDeck(true);
-        else
-            prov->setStarterDeck(false);
-        mod=true;
-    }
-    if(mod==true)
-        QMessageBox::warning(this, "Esito positivo!", "Oggetto modificato");
-    else
-        QMessageBox::warning(this, "Esito negativo!", "Oggetto non modificato");
+}
+
+//funzione refresh del mio negl
+void paginamodifica::refreshNeg()const{
+    string tipoItem = oggModifica->getTipo();
     //salvataggio e aggiornamento dati nella view
     if(pNegL->getInfoBottoneGeneraleNeg() == true){
         pNegL->setTrueBottoneTutte();
@@ -294,7 +272,20 @@ void paginamodifica::pressioneInsInModifica(){
     }
     pNegL->getBottoneElimina()->setEnabled(false);
     pNegL->getBottoneModifica()->setEnabled(false);
+}
 
-    pCont->setDisabled(false);
-    close();//chiudo il widget
+//ovverride di Qclose event
+void paginamodifica::closeEvent(QCloseEvent *event) {
+    if (event->spontaneous()) {
+        //qDebug("The close button was clicked");
+        refreshNeg();
+        pCont->setDisabled(false);
+        // do event->ignore();
+        // or QWidget::closeEvent(event);
+    } else {
+        refreshNeg();
+        pCont->setDisabled(false);
+        //qDebug("The close button was clicked");
+        //QWidget::closeEvent(event);
+    }
 }
