@@ -157,7 +157,7 @@ void controller::eliminaOggetto(){
         Contenitore<itemBase*>::Iterator itini = model->mbegin();
         Contenitore<itemBase*>::Iterator itfine = model->mend();
         string tipoogg= del->getTipo();
-        for(; itini != itfine ; ++itini){
+        for(; !eliminazioneFatta && itini != itfine ; ++itini){
             if( *del == *(*itini) ){
                 eliminazioneFatta = true;
                 delete del;
