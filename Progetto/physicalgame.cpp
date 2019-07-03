@@ -91,9 +91,6 @@ bool physicalGame::operator!=(const itemBase& i) const
     }else{
         return false;
     }
-    /*return !ph || item::operator!=(i) ||
-           ( getQualeConsole() != ph->getQualeConsole() ) ||
-           ( getEdizione() != ph->getEdizione() );*/
 }
 
 //metodo virtuale per prendere i dati

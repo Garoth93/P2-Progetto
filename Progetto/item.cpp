@@ -84,10 +84,6 @@ bool itemBase::operator!=(const itemBase& i) const
     }else{
         return false;
     }
-
-    /*return ( titolo!=i.titolo) ||
-           ( casaProduttrice!=i.casaProduttrice ) ||
-           ( prezzoBase!=i.prezzoBase);*/
 }
 
 //metodo per estrappolare i dati e metterli in stringa

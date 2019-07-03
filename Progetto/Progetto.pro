@@ -14,7 +14,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     item.cpp \
     physicalgame.cpp \
     virtualgame.cpp \
@@ -29,7 +28,7 @@ SOURCES += main.cpp\
     paginainserimento.cpp \
     paginamodifica.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     contenitore.h \
     item.h \
     physicalgame.h \

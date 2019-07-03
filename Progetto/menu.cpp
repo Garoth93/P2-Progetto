@@ -6,8 +6,8 @@ parent(p),
     esciDalProgramma(new QAction("Esci", p))
 {
     //Assemblo il menu
-        addAction(salvaDati);
-        addAction(esciDalProgramma);
+    addAction(salvaDati);
+    addAction(esciDalProgramma);
 }
 
 QAction* menu::getSalva() const {

@@ -1,6 +1,5 @@
 INPUT(
 ./debug\main.o
-./debug\mainwindow.o
 ./debug\item.o
 ./debug\physicalgame.o
 ./debug\virtualgame.o
@@ -14,7 +13,6 @@ INPUT(
 ./debug\itemwidget.o
 ./debug\paginainserimento.o
 ./debug\paginamodifica.o
-./debug\moc_mainwindow.o
 ./debug\moc_controller.o
 ./debug\moc_menu.o
 ./debug\moc_negozio.o

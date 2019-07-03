@@ -9,11 +9,7 @@ negozio::negozio(QWidget* parent):
     tutte(new QPushButton("Tutto il negozio", this)),
     belimina(new QPushButton("Elimina oggetto", this)),
     bmodifica(new QPushButton("Modifica oggetto", this)),
-    //infoBottoneFisico(false),//bool info bottone fisico
     lista(new itemWidget(this))
-    //mainl(new QHBoxLayout),
-    //buttonl(new QVBoxLayout),
-    //vislist(new QListWidget)
 {
     QHBoxLayout * mainl = new QHBoxLayout;
     QVBoxLayout * buttonl = new QVBoxLayout;

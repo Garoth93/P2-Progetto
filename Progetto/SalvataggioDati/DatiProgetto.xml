@@ -1,8 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--!!!Non modificate-->
-<root>
-    <GiocoDiCarte titolo="Drago del giudizio" casaProduttrice="Konami" prezzoBase="15" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
-    <GiocoDiCarte titolo="Lumina fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
-    <GiocoDiCarte titolo="Wulf fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
-    <GiocoDiCarte titolo="Lyla fedele della luce" casaProduttrice="Konami" prezzoBase="5" espansione="LODT" primaEdizione="true" numeroCarte="1" starterDeck="false"/>
-</root>
+<root/>

@@ -9,7 +9,6 @@ controller::controller(QWidget *parent):
     pagins(new paginainserimento(this)),
     tab(new QTabWidget(this)),
     cercapagina(new cercapage(this))
-    //file(QFileDialog::getOpenFileName(this, tr("Scegli FIle"), "Progetto/SalvataggioDati", "File XML(*.xml)"))
 {
      model= (new modello(file.toStdString()));//prova per model sistemare
     //carico i dati nel model

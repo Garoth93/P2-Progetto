@@ -106,9 +106,6 @@ bool virtualGame::operator!=(const itemBase& i) const
     }else{
         return false;
     }
-    /*return !vi && item::operator!=(i) ||
-           ( getPiattaForma() != vi->getPiattaForma() ) ||
-           ( getSeasonPass() != vi->getSeasonPass() );*/
 }
 
 //metodo virtuale per prendere i dati

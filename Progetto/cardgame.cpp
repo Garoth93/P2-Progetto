@@ -137,11 +137,6 @@ bool cardGame::operator!=(const itemBase& i) const
     }else{
         return false;
     }
-    /*return !ca || item::operator!=(i) ||
-           ( getEspansione() != ca->getEspansione() ) ||
-           ( getPrimaEdizione() != ca->getPrimaEdizione() ) ||
-           ( getNumeroCarte() != ca->getNumeroCarte() ) ||
-           ( getStarterDeck() != ca->getStarterDeck() );*/
 }
 
 //metodo virtuale per prendere i dati

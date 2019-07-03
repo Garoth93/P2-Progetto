@@ -184,10 +184,6 @@ itemBase * paginainserimento::creazioneOggIns(){
     double perzzoBaseD = atof(prezzoBaseins.c_str());
     if((nomeogg != "") && (casapogg != "" && (un_number(prezzoBaseins)))){
         if(brVideovI == true){//oggetto virtuale
-            /*ricorda usiamo conversione to local 8 per windows
-              possiamo usare sempre queste 2
-              std::string utf8_text = qs.toUtf8().constData();
-              std::string current_locale_text = qs.toLocal8Bit().constData();*/
             string piattaogg = (lipiattaformavI->text()).toLocal8Bit().constData();
             bool seasonogg = false;
             if (seasonpassvI->isChecked())
