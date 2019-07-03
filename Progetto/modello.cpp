@@ -69,7 +69,7 @@ void modello::caricamento(){
                 std::string casaProduttrice = attributo.hasAttribute("casaProduttrice") ? attributo.value("casaProduttrice").toString().toStdString() : "";
                 double prezzoBase = attributo.hasAttribute("prezzoBase") ? attributo.value("prezzoBase").toDouble() : 0;
 
-                itemBase* daInserire = NULL;//why?
+                itemBase* daInserire = nullptr;//why?
 
                 if(lettore.name() == "VideogiocoFisico"){
                     std::string qualeConsole = attributo.hasAttribute("qualeConsole") ? attributo.value("qualeConsole").toString().toStdString() : "";
@@ -95,7 +95,7 @@ void modello::caricamento(){
                     daInserire = new cardGame(titolo,casaProduttrice,prezzoBase,espansione,primaEdizione,numeroCarte,starterDeck);
                 }
 
-                if(daInserire!=NULL)//chiamo la mia pushback
+                if(daInserire!=nullptr)//chiamo la mia pushback
                     //lista->insertBack(daInserire);
                     lista->PushEnd(daInserire);
 

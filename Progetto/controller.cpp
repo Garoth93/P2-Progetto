@@ -2,15 +2,16 @@
 
 controller::controller(QWidget *parent):
     QWidget(parent),
+    file(QFileDialog::getOpenFileName(this, tr("Scegli FIle"), "Progetto/SalvataggioDati", "File XML(*.xml)")),
     layoutPrincipale(new QVBoxLayout(this)),
     mymenu(new menu(this)),
     negl(new negozio(this)),
     pagins(new paginainserimento(this)),
     tab(new QTabWidget(this)),
-    cercapagina(new cercapage(this)),
-    file(QFileDialog::getOpenFileName(this, tr("Scegli FIle"), "Progetto/SalvataggioDati", "File XML(*.xml)")),//prova per model sistemare
-    model(new modello(file.toStdString()))//prova per model sistemare
+    cercapagina(new cercapage(this))
+    //file(QFileDialog::getOpenFileName(this, tr("Scegli FIle"), "Progetto/SalvataggioDati", "File XML(*.xml)"))
 {
+     model= (new modello(file.toStdString()));//prova per model sistemare
     //carico i dati nel model
     model->setNuovoPercorso(file.toStdString());
     model->caricamento();
@@ -108,8 +109,8 @@ void controller::caricaDatiNegozio(){
 
 //funziona modifica
 void controller::pressioneModifica() {
-    listaditem * provM = NULL;
-    itemBase * modM = NULL;
+    listaditem * provM = nullptr;
+    itemBase * modM = nullptr;
     provM = negl->getLista()->itemCorrente();
     modM = provM->prelevaItem();
     //string tipoogg = modM->getTipo();
@@ -149,8 +150,8 @@ void controller::avviaRicercaOgg() {
 void controller::eliminaOggetto(){
     if(negl->getInfoBottoneElimina() == true){
         bool eliminazioneFatta = false;
-        listaditem * prov = NULL;
-        itemBase * del = NULL;
+        listaditem * prov = nullptr;
+        itemBase * del = nullptr;
         prov = negl->getLista()->itemCorrente();
         del = prov->prelevaItem();
         Contenitore<itemBase*>::Iterator itini = model->mbegin();
@@ -191,7 +192,7 @@ void controller::eliminaOggetto(){
 void controller::avviaIns() {
     if(file!=""){
         itemBase * provvisorio = pagins->creazioneOggIns();//creo oggetto da inserire per poi andare a inserire
-        if(provvisorio == NULL){
+        if(provvisorio == nullptr){
             QMessageBox::warning(this, "Attenzione!", "Inserisci dati validi");
         }else{
             model->getlista()->PushEnd(provvisorio);

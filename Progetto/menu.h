@@ -17,7 +17,7 @@ private:
     QAction *salvaDati;
     QAction *esciDalProgramma;
 public:
-    menu(QWidget *parent = NULL);
+    menu(QWidget *parent = nullptr);
     QAction * getSalva()const;
     QAction * getEsci()const;
 };

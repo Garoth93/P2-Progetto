@@ -6,14 +6,15 @@ paginainserimento::paginainserimento(QWidget * p):
     casaProdUnoI(new QLabel("Casa produttrice",this)),//creazione label per casa produttrice
     nomeDueI(new QLineEdit(this)),//creazione edit line per inserimento nome
     casaProdDueI(new QLineEdit(this)),//creazione edit line per inserimento casa produttrice
+    prezzoBaseI(new QLineEdit(this)),
     InsButton(new QPushButton("Inserisci",this)),//creazione bottone ins
+    wvirtualgameI(new QWidget(this)),//crazione widget per i dati del gioco virtuale
+    wphysicalgameI(new QWidget(this)),//crazione widget per i dati del gioco fisico
+    wcardgameI(new QWidget(this)),//crazione widget per i dati del gioco dic arte
     contenitoreradioI(new QGroupBox(tr("Scegli l'oggetto"),this)),//creazione contenitore groupbox
     rVideoVI(new QRadioButton(tr("Videogioco virtuale"),this)),//creazione 3 radio button per scegliere il tipo dell oggetto
     rVideoFI(new QRadioButton(tr("Videogioco fisico"),this)),
     rCarteI(new QRadioButton(tr("Gioco di carte"),this)),
-    wvirtualgameI(new QWidget(this)),//crazione widget per i dati del gioco virtuale
-    wphysicalgameI(new QWidget(this)),//crazione widget per i dati del gioco fisico
-    wcardgameI(new QWidget(this)),//crazione widget per i dati del gioco dic arte
     seasonpassvI(new QCheckBox(this)),//ceckbox per bool seasonpass gioco virtuale
     primaedcI(new QCheckBox(this)),
     starterdeckcI(new QCheckBox(this)),
@@ -21,8 +22,7 @@ paginainserimento::paginainserimento(QWidget * p):
     liconsolephyI(new QLineEdit(this)),
     liedizionephyI(new QLineEdit(this)),
     liespansioneI(new QLineEdit(this)),
-    linumerocarteI(new QLineEdit(this)),
-    prezzoBaseI(new QLineEdit(this))
+    linumerocarteI(new QLineEdit(this))
 {
     QGridLayout * mainl = new QGridLayout;//layout principale come matrice
 
@@ -196,7 +196,7 @@ itemBase * paginainserimento::creazioneOggIns(){
                 itemBase * oggetto = new virtualGame(nomeogg,casapogg,perzzoBaseD,piattaogg,seasonogg);
                 return oggetto;
             }else{
-                return NULL;
+                return nullptr;
             }
         }
         if(brVideofI == true){//oggetto fisico
@@ -206,7 +206,7 @@ itemBase * paginainserimento::creazioneOggIns(){
                 itemBase * oggetto = new physicalGame(nomeogg,casapogg,perzzoBaseD,consogg,edizogg);
                 return oggetto;
             }else{
-                return NULL;
+                return nullptr;
             }
         }
         if(brCarteI == true){//oggetto carte
@@ -222,12 +222,11 @@ itemBase * paginainserimento::creazioneOggIns(){
                 itemBase * oggetto = new cardGame(nomeogg,casapogg,perzzoBaseD,espaogg,primaogg,numcoggd,startogg);
                 return oggetto;
             }else{
-                return NULL;
+                return nullptr;
             }
         }
-    }else{
-        return NULL;
     }
+    return nullptr;
 }
 
 

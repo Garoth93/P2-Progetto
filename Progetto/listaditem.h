@@ -16,7 +16,7 @@ private:
     QWidget* parent;//puntatore a qwidget che sarà il mio widget per inserire i dati
     itemBase* oggetto;//puntatore polimorfo al mio oggetto
 public:
-    listaditem(QWidget*, itemBase* = NULL);//costrtuttore
+    listaditem(QWidget*, itemBase* = nullptr);//costrtuttore
     itemBase* prelevaItem() const;//serve per prendere il mio item da inserire poi
     void update();
 };

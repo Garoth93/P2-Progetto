@@ -6,14 +6,15 @@ cercapage::cercapage(QWidget* parent):
     casaProdUno(new QLabel("Casa produttrice",this)),//creazione label per casa produttrice
     nomeDue(new QLineEdit(this)),//creazione edit line per inserimento nome
     casaProdDue(new QLineEdit(this)),//creazione edit line per inserimento casa produttrice
+    lista(new itemWidget(this)),
     cercabutton(new QPushButton("Cerca",this)),//creazione bottone cerca
+    wvirtualgame(new QWidget(this)),//crazione widget per i dati del gioco virtuale
+    wphysicalgame(new QWidget(this)),//crazione widget per i dati del gioco fisico
+    wcardgame(new QWidget(this)),//crazione widget per i dati del gioco dic arte
     contenitoreradio(new QGroupBox(tr("Scegli l'oggetto"),this)),//creazione contenitore groupbox
     rVideoV(new QRadioButton(tr("Videogioco virtuale"),this)),//creazione 3 radio button per scegliere il tipo dell oggetto
     rVideoF(new QRadioButton(tr("Videogioco fisico"),this)),
     rCarte(new QRadioButton(tr("Gioco di carte"),this)),
-    wvirtualgame(new QWidget(this)),//crazione widget per i dati del gioco virtuale
-    wphysicalgame(new QWidget(this)),//crazione widget per i dati del gioco fisico
-    wcardgame(new QWidget(this)),//crazione widget per i dati del gioco dic arte
     seasonpassv(new QCheckBox(this)),//ceckbox per bool seasonpass gioco virtuale
     primaedc(new QCheckBox(this)),
     starterdeckc(new QCheckBox(this)),
@@ -21,8 +22,7 @@ cercapage::cercapage(QWidget* parent):
     liconsolephy(new QLineEdit(this)),
     liedizionephy(new QLineEdit(this)),
     liespansione(new QLineEdit(this)),
-    linumerocarte(new QLineEdit(this)),
-    lista(new itemWidget(this))
+    linumerocarte(new QLineEdit(this))
 {
     QGridLayout * mainl = new QGridLayout;//layout principale come matrice
 
@@ -176,6 +176,7 @@ itemBase* cercapage::creazioneOggRicerca(){
         itemBase * oggetto = new cardGame(nomeogg,casapogg,0,espaogg,primaogg,numcoggd,startogg);
         return oggetto;
     }
+    return nullptr;
 }
 
 //setta il bool per lo stato ricerca a true dopo aver premuto il tasto cerca

@@ -13,7 +13,7 @@ class Contenitore
                 T info;//Campo dati all' interno del mio nodo
                 nodo * prev;//puntatore al nodo precedente
                 nodo * next;//puntatore al nodo sucessivo
-                nodo(const T &, nodo * =NULL, nodo * =NULL);
+                nodo(const T &, nodo * =nullptr, nodo * =nullptr);
                 ~nodo();
 
         };
@@ -27,7 +27,7 @@ class Contenitore
     public:
         void PushBegin(const T &);
         void PushEnd(const T &);
-        Contenitore(nodo * =NULL, nodo* =NULL);
+        Contenitore(nodo * =nullptr, nodo* =nullptr);
 
     //---CONSTITERATOR
     class Constiterator
@@ -108,8 +108,8 @@ Contenitore<T>::Contenitore(nodo * f, nodo * l): first(f), last(l) {}
 template <typename T>
 void Contenitore<T>::PushBegin(const T & t)
 {
-    first = new nodo(t, NULL, first);
-    if (last == NULL)
+    first = new nodo(t, nullptr, first);
+    if (last == nullptr)
     {
         last = first;
     }
@@ -123,8 +123,8 @@ void Contenitore<T>::PushBegin(const T & t)
 template <typename T>
 void Contenitore<T>::PushEnd(const T & t)
 {
-    last = new nodo(t, last, NULL);
-    if (first == NULL)
+    last = new nodo(t, last, nullptr);
+    if (first == nullptr)
     {
         first = last;
     }
@@ -145,8 +145,8 @@ typename Contenitore<T>::Constiterator Contenitore<T>::cbegin() const
 template<typename T>
 typename Contenitore<T>::Constiterator Contenitore<T>::cend() const
 {
-    if(first == NULL)
-        return Constiterator(NULL);
+    if(first == nullptr)
+        return Constiterator(nullptr);
     return Constiterator(last + 1, true);
 }
 
@@ -161,8 +161,8 @@ typename Contenitore<T>::Iterator Contenitore<T>::begin() const
 template<typename T>
 typename Contenitore<T>::Iterator Contenitore<T>::end() const
 {
-    if(first == NULL)
-        return Iterator(NULL);
+    if(first == nullptr)
+        return Iterator(nullptr);
     return Iterator(last + 1, true);
 }
 
@@ -173,7 +173,7 @@ Contenitore<T>::Constiterator::Constiterator(nodo * p, bool b) : pt(p), pte(b) {
 
 //costrtuttore constiterator
 template< typename T>
-Contenitore<T>::Constiterator::Constiterator() : pt(NULL), pte(false) {}
+Contenitore<T>::Constiterator::Constiterator() : pt(nullptr), pte(false) {}
 
 //operatore ++
 template< typename T>
@@ -181,7 +181,7 @@ typename Contenitore<T>::Constiterator& Contenitore<T>::Constiterator::operator 
 {
     if (!pte && pt)
     {
-        if (pt->next == NULL)
+        if (pt->next == nullptr)
         {
             pt = pt + 1;
             pte = true;
@@ -242,7 +242,7 @@ Contenitore<T>::Iterator::Iterator(nodo * p, bool b) : pt(p), pte(b) {}
 
 //costrtuttore iterator
 template< typename T>
-Contenitore<T>::Iterator::Iterator() : pt(NULL), pte(false) {}
+Contenitore<T>::Iterator::Iterator() : pt(nullptr), pte(false) {}
 
 //operatore ++
 template< typename T>
@@ -250,7 +250,7 @@ typename Contenitore<T>::Iterator& Contenitore<T>::Iterator::operator ++()
 {
     if (!pte && pt)
     {
-        if (pt->next == NULL)
+        if (pt->next == nullptr)
         {
             pt = pt + 1;
             pte = true;
@@ -315,9 +315,9 @@ typename Contenitore<T>::Iterator Contenitore<T>::erase(Iterator it)
     Iterator rit;
     if( (!(it.pt)->prev) && (!(it.pt)->next))//se è unico nodo presente nella lista
     {
-        first=NULL;
-        last=NULL;
-        rit.pt=NULL;
+        first=nullptr;
+        last=nullptr;
+        rit.pt=nullptr;
         rit.pte=true;
         return rit;
     }
@@ -333,7 +333,7 @@ typename Contenitore<T>::Iterator Contenitore<T>::erase(Iterator it)
         if((it.pt)->next){
             first=(it.pt)->next;
         }else{
-            first=NULL;
+            first=nullptr;
         }
     }
 
@@ -357,21 +357,21 @@ void Contenitore<T>::erasenoi(Iterator it)
 
     if( (!(it.pt)->prev) && (!(it.pt)->next))//se è unico nodo presente nella lista
     {
-        first=NULL;
-        last=NULL;
+        first=nullptr;
+        last=nullptr;
         //delete (it.pt);
     }else{
 
         if(!(it.pt)->next)//caso se è l'ultimo nodo presente nella lista
         {
             last=(it.pt)->prev;
-            //((it.pt)->prev)->next=NULL;
+            //((it.pt)->prev)->next=nullptr;
             //delete (it.pt);
         }
         if(!(it.pt)->prev)//caso se è il primo nodo presente nella lista
         {
             first=(it.pt)->next;
-            //((it.pt)->next)->prev=NULL;
+            //((it.pt)->next)->prev=nullptr;
             //delete (it.pt);
         }
         if( (it.pt)->prev ){//caso se esiste il nodo precendente
@@ -382,7 +382,7 @@ void Contenitore<T>::erasenoi(Iterator it)
             if((it.pt)->next){
                 first=(it.pt)->next;
             }else{
-                first=NULL;
+                first=nullptr;
             }
         }*/
 
@@ -401,9 +401,9 @@ void Contenitore<T>::erasenoi(Iterator it)
     Iterator rit;
     if( (!(it.pt)->prev) && (!(it.pt)->next))//se è unico nodo presente nella lista
     {
-        first=NULL;
-        last=NULL;
-        rit.pt=NULL;
+        first=nullptr;
+        last=nullptr;
+        rit.pt=nullptr;
         rit.pte=true;
         //return rit;
     }
@@ -419,7 +419,7 @@ void Contenitore<T>::erasenoi(Iterator it)
         if((it.pt)->next){
             first=(it.pt)->next;
         }else{
-            first=NULL;
+            first=nullptr;
         }
     }
 

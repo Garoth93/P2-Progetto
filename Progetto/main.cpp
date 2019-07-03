@@ -10,7 +10,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    controller w(NULL);
+    controller w(nullptr);
     w.show();
 
     return a.exec();
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
 /*int main()
 {
-    Contenitore<const itemBase*>S(NULL,NULL);
+    Contenitore<const itemBase*>S(nullptr,nullptr);
     const itemBase * cff = new cardGame("uno","unouno",5,"tgcs",true,11,false);
     const itemBase * cfg = new cardGame("due","duedue",5,"tgcs",true,11,false);
     S.PushEnd(cff);
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     --cit;
     std::cout << *(*cit) << std::endl;
 
-    Contenitore<const item*>Q(NULL,NULL);
+    Contenitore<const item*>Q(nullptr,nullptr);
     const item * ff = new cardGame("unoc","unoc",5,"tgcs",true,11,false);
     const item * fg = new cardGame("duec","duec",5,"tgcs",true,11,false);
     const item * fh = new cardGame("trec","trec",5,"tgcs",true,11,false);

@@ -38,7 +38,7 @@ public slots:
     void chiudiProgramma();
     void pressioneModifica();
 public:
-    controller(QWidget * parent= NULL);
+    controller(QWidget * parent= nullptr);
 };
 
 #endif // CONTROLLER_H

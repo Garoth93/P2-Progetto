@@ -16,7 +16,7 @@ class itemWidget: public QListWidget
 private:
     QWidget* parent;
 public:
-    itemWidget(QWidget* = NULL);
+    itemWidget(QWidget* = nullptr);
     void aggiungiItem(itemBase *);//aggiungere un item passando il puntatore di quell oggetto
     listaditem* itemCorrente() const;//da aggiungere item corrente
 };

@@ -1,15 +1,16 @@
 #include "paginamodifica.h"
 
 paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWidget * pcc):
-    QWidget(NULL),
+    QWidget(nullptr),
+    oggModifica(oggM),
     pNegL(p),
     pMod(mm),
     pCont(pcc),
-    oggModifica(oggM),
     nomeUnoI(new QLabel("Nome",this)),//creazione label per Nome
     casaProdUnoI(new QLabel("Casa produttrice",this)),//creazione label per casa produttrice
     nomeDueI(new QLineEdit(this)),//creazione edit line per inserimento nome
     casaProdDueI(new QLineEdit(this)),//creazione edit line per inserimento casa produttrice
+    prezzoBaseI(new QLineEdit(this)),
     InsButton(new QPushButton("Inserisci",this)),//creazione bottone ins
     wvirtualgameI(new QWidget(this)),//crazione widget per i dati del gioco virtuale
     wphysicalgameI(new QWidget(this)),//crazione widget per i dati del gioco fisico
@@ -21,8 +22,7 @@ paginamodifica::paginamodifica(negozio * p , itemBase * oggM, modello * mm, QWid
     liconsolephyI(new QLineEdit(this)),
     liedizionephyI(new QLineEdit(this)),
     liespansioneI(new QLineEdit(this)),
-    linumerocarteI(new QLineEdit(this)),
-    prezzoBaseI(new QLineEdit(this))
+    linumerocarteI(new QLineEdit(this))
 {
     QGridLayout * mainl = new QGridLayout;//layout principale come matrice
     QWidget * witem = new QWidget(this);//widget per inizio ins
