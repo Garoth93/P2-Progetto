@@ -88,8 +88,16 @@ bool itemBase::operator!=(const itemBase& i) const
 
 //metodo per estrappolare i dati e metterli in stringa
 std::string itemBase::infoItem() {
+    std::string tipoItem = getTipo();
+    std::string tipoDaIns;
+    if(tipoItem == "physicalgame")
+        tipoDaIns = "Gioco Fisico";
+    if(tipoItem == "virtualgame")
+        tipoDaIns = "Gioco virtuale";
+    if(tipoItem == "cardgame")
+        tipoDaIns = "Gioco di carte";
     std::string str = "";
-    return str.append("\n").append("Tipologia prodotto: " + getTipo())
+    return str.append("\n").append("Tipologia prodotto: " + tipoDaIns)
             .append("\nTitolo: " + getTitolo())
             .append("\nCasaProduttrice: " + getCasaProdruttrice());
 }

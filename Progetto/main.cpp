@@ -1,9 +1,9 @@
 #include <QApplication>
 
-#include "physicalgame.h"
+/*#include "physicalgame.h"
 #include "virtualgame.h"
 #include "cardgame.h"
-#include "contenitore.h"
+#include "contenitore.h"*/
 #include "controller.h"
 
 int main(int argc, char *argv[])
